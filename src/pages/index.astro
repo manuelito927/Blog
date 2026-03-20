@@ -1,170 +1,242 @@
 ---
-// DATA OPTIMIZATION (Neuro-Copywriting)
-const featured = {
-  category: "NEURO-HACKING",
-  title: "Riprogrammare il Carattere: la scienza dietro i tuoi risultati",
-  excerpt: "Non sei vittima dei tuoi geni. Scopri come la neuroplasticità e la filosofia stoica creano una mentalità d'acciaio.",
-  time: "7 min",
+// DATASET: Rigore e Documentazione
+const metadata = {
+  title: "Manuel | Analisi Scientifica della Mente e della Performance",
+  description: "Archivio di studi e riflessioni basate su evidenze scientifiche in psicologia cognitiva, filosofia del comportamento e scienze dello sport."
 };
 
-const mainPosts = [
+const categories = [
+  { name: "Psicologia Cognitiva", slug: "psicologia" },
+  { name: "Filosofia Comportamentale", slug: "filosofia" },
+  { name: "Scienze dello Sport", slug: "sport" }
+];
+
+const featuredPost = {
+  id: 1,
+  category: "Neuroscienze",
+  title: "Meccanismi neurali della resilienza: oltre il concetto di forza di volontà",
+  excerpt: "Un'analisi approfondita su come i circuiti della corteccia prefrontale mediale modulano la risposta allo stress cronico e alla fatica.",
+  date: "14 Marzo 2026",
+  readingTime: "12 min",
+  citations: 8
+};
+
+const recentArticles = [
   {
-    category: "PSICOLOGIA",
-    title: "Perché la tua mente ti mente (e come smettere)",
-    excerpt: "Analisi dei bias cognitivi che sabotano la tua felicità ogni giorno.",
-    time: "4 min",
+    category: "Psicologia dello Sport",
+    title: "L'interferenza contestuale nell'apprendimento motorio",
+    excerpt: "Perché la varietà degli stimoli durante l'allenamento produce una ritenzione mnemonica superiore rispetto alla ripetizione costante.",
+    time: "8 min",
+    level: "Avanzato"
   },
   {
-    category: "PERFORMANCE",
-    title: "La Regola dell'1%: Piccole abitudini, enormi ritorni",
-    excerpt: "Come la psicologia dello sport trasforma la mediocrità in eccellenza.",
-    time: "6 min",
+    category: "Filosofia",
+    title: "Epitteto e la neuroplasticità: convergenze tra Stoicismo e CBT",
+    excerpt: "Come le antiche tecniche di ristrutturazione cognitiva trovano oggi conferma nei processi di rimodellamento sinaptico.",
+    time: "10 min",
+    level: "Intermedio"
+  },
+  {
+    category: "Psicologia Positiva",
+    title: "Il paradosso del benessere: analisi critica del concetto di 'Flow'",
+    excerpt: "Oltre Mihály Csíkszentmihályi: cosa dicono le recenti scansioni fMRI sullo stato di immersione totale.",
+    time: "7 min",
+    level: "Scientifico"
   }
 ];
 
-const quotes = ["La tua attenzione è la tua moneta più preziosa.", "Domina il caos interno.", "Disciplina è Libertà."];
+const methodology = [
+  { title: "Evidenze", desc: "Ogni articolo cita fonti peer-reviewed e studi clinici validati." },
+  { title: "Rigore", desc: "Nessuna promessa di 'hackeraggio veloce'. Solo analisi di processi biologici reali." },
+  { title: "Prassi", desc: "Trasposizione della teoria in protocolli applicabili basati sulla letteratura scientifica." }
+];
 ---
 
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MANUEL // LABORATORY OF THE MIND</title>
+    <title>{metadata.title}</title>
     <style>
         :root {
-            --bg: #050608;
-            --surface: #0f1115;
-            --accent: #a3c1ad; /* Sage Green: Scientific & Calm */
-            --text: #eef1f4;
-            --muted: #8a919b;
-            --line: rgba(255,255,255,0.06);
+            /* Palette: Deep Research (Blu Notte, Grigio Tecnico, Bianco Carta) */
+            --bg: #0a0b0e;
+            --surface: #14161c;
+            --accent: #6482ad; /* Steel Blue: professionale, freddo, affidabile */
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-serif: 'Georgia', serif; /* Per i titoli: trasmette autorità accademica */
+            --font-sans: 'Inter', system-ui, sans-serif; /* Per il corpo: massima leggibilità */
         }
 
+        * { box-sizing: border-box; }
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
             margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.7; /* Ottimale per testi lunghi e complessi */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* CORREZIONE 3: Progress Bar */
-        #progress {
-            position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent), #fff);
-            z-index: 1000; width: 0%; transition: width 0.1s;
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: var(--accent); z-index: 1000; width: 0%;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
 
-        /* CORREZIONE 1: Brand Authority */
+        /* Navigation */
         nav {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--line);
         }
-        .logo { font-weight: 900; letter-spacing: -1px; font-size: 1.2rem; }
-        .logo span { color: var(--accent); }
+        .logo { font-weight: 700; letter-spacing: 1px; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* CORREZIONE 2: Hero Transformation */
-        .hero { padding: 100px 0; text-align: center; }
-        .hero h1 { 
-            font-size: clamp(2.5rem, 8vw, 5rem); 
-            line-height: 1; margin-bottom: 2rem;
-            letter-spacing: -3px; font-weight: 800;
+        /* Hero: The Thesis Statement */
+        .hero { padding: 120px 0 80px; border-bottom: 1px solid var(--border); }
+        .hero-label { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        h1 { 
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            line-height: 1.1; margin: 0 0 2rem; font-weight: 400;
         }
-        .hero p { color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.2rem; }
+        .hero-desc { max-width: 700px; color: var(--text-secondary); font-size: 1.1rem; }
 
-        /* CORREZIONE 4: Grid Layout (Bento Style) */
-        .bento {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 20px;
-            margin-bottom: 50px;
-        }
+        /* Grid Layout */
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; margin: 60px 0; }
 
-        .card {
-            background: var(--surface);
-            padding: 30px;
-            border-radius: 24px;
-            border: 1px solid var(--line);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none; color: inherit;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        /* Featured Article */
+        .featured-card { text-decoration: none; color: inherit; display: block; margin-bottom: 60px; }
+        .featured-card:hover h2 { text-decoration: underline; color: var(--accent); }
+        .meta { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem; display: flex; gap: 15px; }
+        .meta span { border-left: 1px solid var(--border); padding-left: 15px; }
+        .meta span:first-child { border: none; padding: 0; }
+        h2 { font-family: var(--font-serif); font-size: 2.2rem; margin: 0 0 1.5rem; font-weight: 400; }
+        .excerpt { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem; }
 
-        .featured { grid-column: span 2; background: linear-gradient(135deg, #0f1115 0%, #161a1f 100%); }
-        
-        .tag { font-size: 0.7rem; font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
-        h2, h3 { margin: 15px 0; letter-spacing: -1px; }
+        /* Sidebar: Methods & Context */
+        .sidebar-section { margin-bottom: 40px; padding: 30px; background: var(--surface); border-radius: 4px; border: 1px solid var(--border); }
+        .sidebar-section h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; color: var(--accent); }
+        .sidebar-item { margin-bottom: 20px; font-size: 0.9rem; }
+        .sidebar-item strong { display: block; color: var(--text-primary); margin-bottom: 5px; }
+        .sidebar-item p { margin: 0; color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
 
-        .quote-slider {
-            background: var(--line);
-            padding: 20px; text-align: center; border-radius: 50px;
-            margin: 40px 0; font-style: italic; font-size: 0.9rem;
-        }
+        /* Article List */
+        .article-list { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .small-card { text-decoration: none; color: inherit; }
+        .small-card h4 { font-family: var(--font-serif); font-size: 1.4rem; margin: 10px 0; font-weight: 400; transition: color 0.3s; }
+        .small-card:hover h4 { color: var(--accent); }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+        footer { padding: 80px 0 40px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.8rem; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all ease; }
         .reveal.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .article-list { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <div id="progress"></div>
+    <div class="progress-bar" id="pb"></div>
 
     <div class="container">
         <nav>
-            <div class="logo">MANUEL <span>/</span> BRAIN LAB</div>
-            <div style="font-size: 0.7rem; color: var(--muted);">EDIZIONE 2026</div>
+            <div class="logo">Manuel <span>/</span> Archive</div>
+            <div class="nav-links">
+                <a href="#articles">Indice</a>
+                <a href="#method">Metodologia</a>
+                <a href="#about">Informazioni</a>
+            </div>
         </nav>
 
-        <section class="hero reveal">
-            <span class="tag">Oltre la psicologia</span>
-            <h1>Costruisci la tua mente dominante.</h1>
-            <p>Protocolli pratici di filosofia applicata e neuroscienza della performance per chi non accetta il rumore mentale.</p>
-            <a href="#articoli" style="background: var(--accent); color: var(--bg); padding: 15px 30px; border-radius: 12px; font-weight: bold; text-decoration: none;">Inizia l'Allenamento</a>
-        </section>
+        <header class="hero reveal">
+            <span class="hero-label">Pubblicazioni e Analisi</span>
+            <h1>L'intersezione tra neuroscienze applicate e comportamento umano.</h1>
+            <p class="hero-desc">
+                Un archivio di articoli di approfondimento tecnico. Nessuna semplificazione eccessiva, solo rigore metodologico per esplorare la mente, la filosofia e la prestazione sportiva.
+            </p>
+        </header>
 
-        <div class="quote-slider reveal">
-            "{quotes[0]}"
-        </div>
-
-        <section class="bento" id="articoli">
-            <a href="#" class="card featured reveal">
-                <span class="tag">{featured.category}</span>
-                <h2 style="font-size: 2.5rem;">{featured.title}</h2>
-                <p style="color: var(--muted);">{featured.excerpt}</p>
-                <div style="margin-top: 20px; font-size: 0.8rem; font-weight: bold;">LEGGI ORA (7 MIN) →</div>
-            </a>
-
-            {mainPosts.map(post => (
-                <a href="#" class="card reveal">
-                    <span class="tag">{post.category}</span>
-                    <h3>{post.title}</h3>
-                    <p style="font-size: 0.9rem; color: var(--muted);">{post.excerpt}</p>
-                    <div style="margin-top: 20px; font-size: 0.8rem;">{post.time} read →</div>
+        <main class="main-grid">
+            <section id="articles">
+                <a href="#" class="featured-card reveal">
+                    <div class="meta">
+                        <span>{featuredPost.category}</span>
+                        <span>{featuredPost.date}</span>
+                        <span>{featuredPost.readingTime} lettura</span>
+                        <span>{featuredPost.citations} Citazioni</span>
+                    </div>
+                    <h2>{featuredPost.title}</h2>
+                    <p class="excerpt">{featuredPost.excerpt}</p>
+                    <div style="font-weight: 600; font-size: 0.8rem; color: var(--accent);">LEGGI L'ANALISI COMPLETA →</div>
                 </a>
-            ))}
-        </section>
+
+                <div class="article-list">
+                    {recentArticles.map(post => (
+                        <a href="#" class="small-card reveal">
+                            <div class="meta">
+                                <span>{post.category}</span>
+                                <span>{post.time}</span>
+                            </div>
+                            <h4>{post.title}</h4>
+                            <p class="excerpt" style="font-size: 0.85rem;">{post.excerpt}</p>
+                        </a>
+                    ))}
+                </div>
+            </section>
+
+            <aside>
+                <div class="sidebar-section reveal" id="method">
+                    <h3>Metodologia</h3>
+                    {methodology.map(m => (
+                        <div class="sidebar-item">
+                            <strong>{m.title}</strong>
+                            <p>{m.desc}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div class="sidebar-section reveal">
+                    <h3>Livelli di Lettura</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                        Gli articoli sono classificati in base alla densità di riferimenti bibliografici e alla complessità dei termini tecnici utilizzati.
+                    </p>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div>© 2026 Manuel Archive. Tutti i diritti riservati. Fonti basate su letteratura peer-reviewed.</div>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#" style="color: inherit;">RSS Feed</a>
+                    <a href="#" style="color: inherit;">Privacy Policy</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
-        // Progress Bar Script
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progress").style.width = scrolled + "%";
+        // Progress Bar dinamica
+        window.onscroll = () => {
+            const scroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("pb").style.width = (scroll / height) * 100 + "%";
         };
 
-        // Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) entry.target.classList.add("show");
-            });
+        // Reveal al passaggio
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show') });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
     </script>
 </body>
 </html>
