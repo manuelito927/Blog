@@ -1,10 +1,18 @@
 ---
 const featured = {
-  category: "Mente",
-  title: "La qualità dei tuoi pensieri cambia la qualità della tua vita",
+  category: "Articolo in evidenza",
+  title: "La qualità dei tuoi pensieri influenza la qualità della tua vita",
   excerpt:
-    "Psicologia positiva, filosofia e mentalità sportiva si incontrano in un punto preciso: il modo in cui interpreti ciò che vivi determina come agisci, resisti e cresci.",
+    "Psicologia positiva, filosofia e psicologia dello sport convergono su un punto decisivo: il modo in cui interpreti ciò che vivi cambia il modo in cui reagisci, resisti e cresci.",
   time: "7 min read",
+};
+
+const focusCard = {
+  category: "Focus",
+  title: "Accettare non significa arrendersi",
+  excerpt:
+    "Quando smetti di sprecare energia contro ciò che non puoi controllare, recuperi forza per agire dove conta davvero.",
+  time: "3 min read",
 };
 
 const posts = [
@@ -12,62 +20,68 @@ const posts = [
     category: "Psicologia positiva",
     title: "Perché la mente nota più facilmente ciò che manca",
     excerpt:
-      "Il cervello è portato a vedere il pericolo, il limite e l’errore. Comprendere questo meccanismo è il primo passo per sviluppare uno sguardo più equilibrato.",
+      "Il cervello è portato a vedere il rischio, il limite e l’errore. Comprendere questo meccanismo aiuta a sviluppare uno sguardo più equilibrato.",
     time: "4 min read",
   },
   {
     category: "Filosofia",
-    title: "Accettare non significa arrendersi",
+    title: "La serenità nasce dal confine tra controllo e accettazione",
     excerpt:
-      "Una delle distinzioni più importanti nella vita interiore: smettere di combattere ciò che non controlli ti restituisce energia per agire dove conta davvero.",
+      "Una distinzione semplice ma potente: capire cosa dipende da te e cosa no cambia il modo in cui vivi ogni giornata.",
     time: "5 min read",
   },
   {
     category: "Psicologia dello sport",
     title: "La disciplina resta quando la motivazione scompare",
     excerpt:
-      "La motivazione è incostante. La disciplina invece costruisce identità, continuità e risultati nel tempo.",
+      "La motivazione è instabile. La disciplina costruisce continuità, identità e risultati nel tempo.",
     time: "6 min read",
   },
   {
     category: "Psicologia positiva",
     title: "Come interrompere il dialogo mentale che ti indebolisce",
     excerpt:
-      "Non sempre puoi scegliere il primo pensiero, ma puoi imparare a non trasformarlo automaticamente nella tua verità.",
+      "Non puoi scegliere ogni pensiero, ma puoi imparare a non trasformarlo automaticamente nella tua verità.",
     time: "5 min read",
   },
   {
     category: "Filosofia",
-    title: "Vivere il presente è più difficile di quanto sembri",
+    title: "Essere presenti è più difficile di quanto sembri",
     excerpt:
-      "Siamo spesso trascinati tra rimpianto e anticipazione. Tornare al presente richiede pratica, lucidità e allenamento mentale.",
+      "Tra rimpianto e anticipazione, la mente si perde facilmente. Tornare al presente è una pratica concreta.",
     time: "4 min read",
   },
   {
     category: "Psicologia dello sport",
-    title: "La forza mentale nasce nel modo in cui reagisci alla fatica",
+    title: "La forza mentale si costruisce nel rapporto con la fatica",
     excerpt:
-      "La resilienza non appare nei momenti facili. Si costruisce nelle ripetizioni, nei dubbi e nella capacità di continuare anche senza entusiasmo.",
+      "La resilienza non nasce nei momenti facili, ma nel modo in cui continui quando entusiasmo e comfort finiscono.",
     time: "6 min read",
   },
 ];
 
-const principles = [
+const pillars = [
   {
     n: "01",
     title: "Consapevolezza",
-    text: "Capire come funzionano pensieri, emozioni e automatismi è il primo passo per cambiare davvero.",
+    text: "Capire pensieri, emozioni e automatismi è il primo passo per cambiare davvero.",
   },
   {
     n: "02",
     title: "Equilibrio",
-    text: "Tra controllo e accettazione si gioca una parte fondamentale della serenità mentale.",
+    text: "Tra accettazione e responsabilità si costruisce una mente più stabile e lucida.",
   },
   {
     n: "03",
-    title: "Disciplina interiore",
-    text: "La crescita personale non dipende solo da come ti senti, ma da ciò che scegli di fare con continuità.",
+    title: "Disciplina",
+    text: "La crescita interiore dipende meno dall’umore e più da ciò che scegli di fare con continuità.",
   },
+];
+
+const quotes = [
+  "Non tutto ciò che pensi merita di essere creduto.",
+  "La presenza non è un’idea: è un allenamento.",
+  "La stabilità mentale si costruisce nella ripetizione.",
 ];
 ---
 
@@ -78,25 +92,28 @@ const principles = [
     <title>Blog Manuel</title>
     <meta
       name="description"
-      content="Blog su psicologia positiva, filosofia e psicologia dello sport. Un progetto pensato per sviluppare chiarezza mentale, equilibrio e forza interiore."
+      content="Blog su psicologia positiva, filosofia e psicologia dello sport. Un progetto pensato per sviluppare lucidità mentale, equilibrio e forza interiore."
     />
 
     <style>
       :root {
-        --bg: #050505;
-        --bg-2: #0a0a0d;
-        --panel: rgba(255, 255, 255, 0.04);
-        --panel-2: rgba(255, 255, 255, 0.06);
-        --line: rgba(255, 255, 255, 0.08);
+        --bg: #0b0b0d;
+        --bg-2: #111217;
+        --surface: #15181d;
+        --surface-2: rgba(255, 255, 255, 0.045);
+        --surface-3: rgba(255, 255, 255, 0.065);
+        --line: rgba(255, 255, 255, 0.09);
         --line-strong: rgba(255, 255, 255, 0.16);
-        --text: #f7f7f7;
-        --muted: rgba(255, 255, 255, 0.64);
-        --muted-2: rgba(255, 255, 255, 0.44);
-        --shadow: 0 26px 80px rgba(0, 0, 0, 0.38);
+        --text: #f5f7fa;
+        --muted: rgba(245, 247, 250, 0.74);
+        --muted-2: rgba(245, 247, 250, 0.5);
+        --accent: #9bb8a5;
+        --accent-soft: rgba(155, 184, 165, 0.14);
+        --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
         --radius-xl: 34px;
         --radius-lg: 26px;
         --radius-md: 18px;
-        --content-max: 72ch;
+        --content-max: 68ch;
       }
 
       * {
@@ -110,10 +127,10 @@ const principles = [
       body {
         margin: 0;
         color: var(--text);
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background:
-          radial-gradient(circle at top, rgba(255,255,255,0.075), transparent 28%),
-          linear-gradient(180deg, #050505 0%, #09090b 42%, #050505 100%);
+          radial-gradient(circle at top, rgba(155, 184, 165, 0.08), transparent 24%),
+          linear-gradient(180deg, var(--bg) 0%, #0d0f13 40%, var(--bg) 100%);
       }
 
       a {
@@ -132,17 +149,17 @@ const principles = [
         left: 0;
         height: 2px;
         width: 0%;
-        z-index: 200;
-        background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.55));
-        box-shadow: 0 0 14px rgba(255,255,255,0.28);
+        z-index: 250;
+        background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.65));
+        box-shadow: 0 0 14px rgba(155, 184, 165, 0.28);
       }
 
       .nav {
         position: sticky;
         top: 0;
-        z-index: 150;
+        z-index: 200;
         backdrop-filter: blur(16px);
-        background: rgba(5, 5, 5, 0.72);
+        background: rgba(11, 11, 13, 0.74);
         border-bottom: 1px solid var(--line);
       }
 
@@ -185,24 +202,24 @@ const principles = [
       }
 
       .nav-links a:hover {
-        color: white;
+        color: var(--text);
         transform: translateY(-1px);
       }
 
       .nav-cta {
         padding: 11px 15px;
         border-radius: 14px;
-        background: rgba(255,255,255,0.04);
         border: 1px solid var(--line);
+        background: var(--surface-2);
       }
 
       .hero {
-        padding: 84px 0 36px;
+        padding: 88px 0 42px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: 1.16fr 0.84fr;
         gap: 22px;
         align-items: stretch;
       }
@@ -214,10 +231,10 @@ const principles = [
         padding: 10px 14px;
         border-radius: 999px;
         border: 1px solid var(--line);
-        background: rgba(255,255,255,0.03);
+        background: var(--surface-2);
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.2em;
         font-size: 11px;
       }
 
@@ -225,16 +242,16 @@ const principles = [
         width: 8px;
         height: 8px;
         border-radius: 999px;
-        background: white;
-        opacity: 0.95;
+        background: var(--accent);
+        box-shadow: 0 0 14px rgba(155, 184, 165, 0.35);
       }
 
       h1 {
         margin: 20px 0 0;
         font-size: clamp(42px, 7vw, 82px);
-        line-height: 0.94;
+        line-height: 0.95;
         letter-spacing: -0.06em;
-        max-width: 13ch;
+        max-width: 12ch;
       }
 
       .hero-sub {
@@ -242,7 +259,7 @@ const principles = [
         max-width: var(--content-max);
         color: var(--muted);
         font-size: 18px;
-        line-height: 1.82;
+        line-height: 1.8;
       }
 
       .hero-actions {
@@ -265,14 +282,14 @@ const principles = [
       }
 
       .btn-primary {
-        background: white;
-        color: black;
+        background: var(--text);
+        color: var(--bg);
         font-weight: 700;
       }
 
       .btn-secondary {
-        background: rgba(255,255,255,0.03);
-        color: white;
+        background: var(--surface-2);
+        color: var(--text);
       }
 
       .btn-primary:hover,
@@ -291,7 +308,7 @@ const principles = [
         padding: 16px;
         border-radius: 20px;
         border: 1px solid var(--line);
-        background: rgba(255,255,255,0.03);
+        background: var(--surface-2);
       }
 
       .metric strong {
@@ -313,7 +330,7 @@ const principles = [
         border-radius: var(--radius-xl);
         border: 1px solid var(--line);
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+          linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.022));
         box-shadow: var(--shadow);
       }
 
@@ -335,7 +352,7 @@ const principles = [
         padding: 24px;
         border-radius: 26px;
         border: 1px solid var(--line);
-        background: rgba(0,0,0,0.24);
+        background: rgba(0, 0, 0, 0.22);
       }
 
       .featured-label,
@@ -357,7 +374,7 @@ const principles = [
         margin: 0;
         max-width: 36ch;
         color: var(--muted);
-        line-height: 1.82;
+        line-height: 1.78;
         font-size: 15px;
       }
 
@@ -370,8 +387,28 @@ const principles = [
         font-size: 13px;
       }
 
+      .quote-strip {
+        padding: 18px 0 8px;
+      }
+
+      .quote-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .quote {
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--accent-soft);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
       .section {
-        padding: 54px 0 88px;
+        padding: 56px 0 88px;
       }
 
       .section-head {
@@ -394,12 +431,13 @@ const principles = [
         font-size: clamp(30px, 4vw, 48px);
         line-height: 1;
         letter-spacing: -0.05em;
+        max-width: 14ch;
       }
 
       .section-head .right {
         max-width: 34rem;
         color: var(--muted);
-        line-height: 1.82;
+        line-height: 1.8;
       }
 
       .featured-band {
@@ -422,12 +460,12 @@ const principles = [
 
       .featured-main h3 {
         font-size: 34px;
-        line-height: 1.02;
+        line-height: 1.04;
       }
 
       .featured-secondary h3 {
         font-size: 24px;
-        line-height: 1.08;
+        line-height: 1.1;
       }
 
       .featured-main p,
@@ -435,7 +473,7 @@ const principles = [
         margin: 0;
         max-width: var(--content-max);
         color: var(--muted);
-        line-height: 1.84;
+        line-height: 1.82;
       }
 
       .inline-cta {
@@ -443,7 +481,7 @@ const principles = [
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        color: white;
+        color: var(--text);
         font-size: 14px;
       }
 
@@ -460,7 +498,7 @@ const principles = [
         border-radius: 28px;
         border: 1px solid var(--line);
         background:
-          linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+          linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.022));
         transition: transform 0.34s ease, border-color 0.34s ease, background 0.34s ease;
       }
 
@@ -479,21 +517,21 @@ const principles = [
         width: 124px;
         height: 124px;
         border-radius: 999px;
-        background: rgba(255,255,255,0.04);
+        background: rgba(155, 184, 165, 0.08);
         filter: blur(8px);
       }
 
       .card h3 {
         margin: 14px 0 12px;
         font-size: 24px;
-        line-height: 1.12;
+        line-height: 1.14;
         letter-spacing: -0.04em;
       }
 
       .card p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.78;
+        line-height: 1.76;
         max-width: 34ch;
         font-size: 15px;
       }
@@ -511,6 +549,24 @@ const principles = [
         padding: 10px 0 90px;
       }
 
+      .principles-head {
+        margin-bottom: 20px;
+      }
+
+      .principles-head small {
+        color: var(--muted-2);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 11px;
+      }
+
+      .principles-head h2 {
+        margin: 12px 0 0;
+        font-size: clamp(30px, 4vw, 46px);
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
       .principles-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -521,13 +577,14 @@ const principles = [
         padding: 22px;
         border-radius: 24px;
         border: 1px solid var(--line);
-        background: rgba(255,255,255,0.03);
+        background: var(--surface-2);
       }
 
       .principle strong {
         display: block;
         font-size: 34px;
         letter-spacing: -0.06em;
+        color: var(--accent);
       }
 
       .principle h3 {
@@ -539,7 +596,7 @@ const principles = [
       .principle p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.75;
+        line-height: 1.74;
       }
 
       .about {
@@ -558,13 +615,14 @@ const principles = [
         font-size: clamp(30px, 4vw, 46px);
         line-height: 1;
         letter-spacing: -0.05em;
+        max-width: 13ch;
       }
 
       .about p {
         margin: 0;
         max-width: var(--content-max);
         color: var(--muted);
-        line-height: 1.92;
+        line-height: 1.9;
         font-size: 16px;
       }
 
@@ -577,10 +635,10 @@ const principles = [
 
       .reveal {
         opacity: 0;
-        transform: translateY(34px) scale(0.985);
+        transform: translateY(28px) scale(0.988);
         transition:
-          opacity 0.9s ease,
-          transform 0.9s ease;
+          opacity 0.85s ease,
+          transform 0.85s ease;
         will-change: transform, opacity;
       }
 
@@ -617,7 +675,8 @@ const principles = [
         .about-grid,
         .grid,
         .principles-grid,
-        .hero-metrics {
+        .hero-metrics,
+        .quote-track {
           grid-template-columns: 1fr;
         }
 
@@ -653,7 +712,8 @@ const principles = [
         .featured-main,
         .featured-secondary,
         .principle,
-        .metric {
+        .metric,
+        .quote {
           border-radius: 24px;
         }
       }
@@ -714,7 +774,7 @@ const principles = [
               </div>
               <div class="metric reveal delay-2">
                 <strong>Più equilibrio interiore</strong>
-                <span>Filosofia pratica per distinguere ciò che dipende da te da ciò che non dipende da te.</span>
+                <span>Riflessioni pratiche per distinguere ciò che dipende da te da ciò che non dipende da te.</span>
               </div>
               <div class="metric reveal delay-3">
                 <strong>Più forza nel tempo</strong>
@@ -743,6 +803,14 @@ const principles = [
         </div>
       </section>
 
+      <section class="quote-strip container">
+        <div class="quote-track">
+          {quotes.map((quote, index) => (
+            <div class={`quote reveal delay-${(index % 4) + 1}`}>“{quote}”</div>
+          ))}
+        </div>
+      </section>
+
       <section class="section container" id="articoli">
         <div class="section-head reveal">
           <div class="left">
@@ -751,8 +819,8 @@ const principles = [
           </div>
 
           <div class="right">
-            Una selezione di contenuti per capire meglio il funzionamento della mente,
-            vivere con maggiore presenza e sviluppare disciplina emotiva e mentale.
+            Una selezione di contenuti pensata per aiutarti a comprendere meglio il funzionamento
+            della mente, vivere con maggiore presenza e sviluppare una forza più stabile e concreta.
           </div>
         </div>
 
@@ -769,12 +837,9 @@ const principles = [
           </article>
 
           <article class="featured-secondary glass reveal delay-1">
-            <div class="meta-line">Focus · 3 min read</div>
-            <h3>Ciò che pensi ogni giorno costruisce il tuo modo di vivere.</h3>
-            <p>
-              La mente non influenza solo l’umore. Influenza le scelte, la resistenza,
-              il modo in cui interpreti gli eventi e la direzione che dai alle tue giornate.
-            </p>
+            <div class="meta-line">{focusCard.category} · {focusCard.time}</div>
+            <h3>{focusCard.title}</h3>
+            <p>{focusCard.excerpt}</p>
 
             <div class="inline-cta">
               <span>Approfondisci</span>
@@ -800,8 +865,13 @@ const principles = [
       </section>
 
       <section class="principles container" id="principi">
+        <div class="principles-head reveal">
+          <small>Temi guida</small>
+          <h2>I tre pilastri del progetto.</h2>
+        </div>
+
         <div class="principles-grid">
-          {principles.map((item, index) => (
+          {pillars.map((item, index) => (
             <article class={`principle reveal delay-${(index % 4) + 1}`}>
               <strong>{item.n}</strong>
               <h3>{item.title}</h3>
