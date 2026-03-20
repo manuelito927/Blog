@@ -1,0 +1,40 @@
+---
+const posts = ["primo-articolo"];
+---
+
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog</title>
+    <style>
+      body {
+        background: black;
+        color: white;
+        font-family: sans-serif;
+        padding: 40px;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      .card {
+        border: 1px solid #222;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Il mio blog</h1>
+
+    {posts.map(post => (
+      <div class="card">
+        <a href={`/blog/${post}`}>
+          {post}
+        </a>
+      </div>
+    ))}
+  </body>
+</html>
