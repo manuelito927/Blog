@@ -15,7 +15,7 @@ const focusCard = {
   time: "3 min read",
 };
 
-const posts = [
+const mainPosts = [
   {
     category: "Psicologia positiva",
     title: "Perché la mente nota più facilmente ciò che manca",
@@ -25,14 +25,14 @@ const posts = [
   },
   {
     category: "Filosofia",
-    title: "La serenità nasce dal confine tra controllo e accettazione",
+    title: "Perché la serenità nasce dal confine tra controllo e accettazione",
     excerpt:
       "Una distinzione semplice ma potente: capire cosa dipende da te e cosa no cambia il modo in cui vivi ogni giornata.",
     time: "5 min read",
   },
   {
     category: "Psicologia dello sport",
-    title: "La disciplina resta quando la motivazione scompare",
+    title: "Perché la disciplina resta quando la motivazione scompare",
     excerpt:
       "La motivazione è instabile. La disciplina costruisce continuità, identità e risultati nel tempo.",
     time: "6 min read",
@@ -44,6 +44,9 @@ const posts = [
       "Non puoi scegliere ogni pensiero, ma puoi imparare a non trasformarlo automaticamente nella tua verità.",
     time: "5 min read",
   },
+];
+
+const morePosts = [
   {
     category: "Filosofia",
     title: "Essere presenti è più difficile di quanto sembri",
@@ -83,6 +86,12 @@ const quotes = [
   "La presenza non è un’idea: è un allenamento.",
   "La stabilità mentale si costruisce nella ripetizione.",
 ];
+
+const proof = [
+  "Contenuti pensati per lettori interessati a lucidità mentale e crescita interiore.",
+  "Approccio pratico: idee da comprendere e da applicare.",
+  "Un percorso tra mente, presenza e disciplina personale.",
+];
 ---
 
 <html lang="it">
@@ -105,15 +114,15 @@ const quotes = [
         --line: rgba(255, 255, 255, 0.09);
         --line-strong: rgba(255, 255, 255, 0.16);
         --text: #f5f7fa;
-        --muted: rgba(245, 247, 250, 0.74);
-        --muted-2: rgba(245, 247, 250, 0.5);
+        --muted: rgba(245, 247, 250, 0.78);
+        --muted-2: rgba(245, 247, 250, 0.52);
         --accent: #9bb8a5;
         --accent-soft: rgba(155, 184, 165, 0.14);
         --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
         --radius-xl: 34px;
         --radius-lg: 26px;
         --radius-md: 18px;
-        --content-max: 68ch;
+        --content-max: 66ch;
       }
 
       * {
@@ -214,7 +223,7 @@ const quotes = [
       }
 
       .hero {
-        padding: 88px 0 42px;
+        padding: 88px 0 34px;
       }
 
       .hero-grid {
@@ -246,6 +255,10 @@ const quotes = [
         box-shadow: 0 0 14px rgba(155, 184, 165, 0.35);
       }
 
+      h1, h2, h3 {
+        color: #ffffff;
+      }
+
       h1 {
         margin: 20px 0 0;
         font-size: clamp(42px, 7vw, 82px);
@@ -259,7 +272,7 @@ const quotes = [
         max-width: var(--content-max);
         color: var(--muted);
         font-size: 18px;
-        line-height: 1.8;
+        line-height: 1.85;
       }
 
       .hero-actions {
@@ -321,7 +334,7 @@ const quotes = [
         display: block;
         margin-top: 6px;
         color: var(--muted);
-        line-height: 1.55;
+        line-height: 1.58;
         font-size: 13px;
       }
 
@@ -374,7 +387,7 @@ const quotes = [
         margin: 0;
         max-width: 36ch;
         color: var(--muted);
-        line-height: 1.78;
+        line-height: 1.82;
         font-size: 15px;
       }
 
@@ -385,6 +398,70 @@ const quotes = [
         gap: 12px;
         color: var(--muted-2);
         font-size: 13px;
+      }
+
+      .social-proof {
+        padding: 12px 0 6px;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .proof-item {
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .mind-model {
+        padding: 32px 0 18px;
+      }
+
+      .mind-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .mind-box {
+        padding: 24px;
+        text-align: center;
+      }
+
+      .mind-label {
+        font-size: 13px;
+        color: var(--muted-2);
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+
+      .mind-flow {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        line-height: 1.7;
+      }
+
+      .mind-arrow {
+        color: var(--accent);
+      }
+
+      .mind-quote {
+        border-left: 3px solid var(--accent);
+        padding: 16px 20px;
+        font-size: 18px;
+        max-width: 720px;
+        color: var(--text);
+        line-height: 1.8;
       }
 
       .quote-strip {
@@ -437,7 +514,7 @@ const quotes = [
       .section-head .right {
         max-width: 34rem;
         color: var(--muted);
-        line-height: 1.8;
+        line-height: 1.85;
       }
 
       .featured-band {
@@ -471,9 +548,9 @@ const quotes = [
       .featured-main p,
       .featured-secondary p {
         margin: 0;
-        max-width: var(--content-max);
+        max-width: 60ch;
         color: var(--muted);
-        line-height: 1.82;
+        line-height: 1.85;
       }
 
       .inline-cta {
@@ -487,7 +564,13 @@ const quotes = [
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .more-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 18px;
       }
 
@@ -503,7 +586,7 @@ const quotes = [
       }
 
       .card:hover {
-        transform: translateY(-7px);
+        transform: translateY(-6px) scale(1.01);
         border-color: var(--line-strong);
         background:
           linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
@@ -531,8 +614,8 @@ const quotes = [
       .card p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.76;
-        max-width: 34ch;
+        line-height: 1.82;
+        max-width: 60ch;
         font-size: 15px;
       }
 
@@ -543,6 +626,24 @@ const quotes = [
         gap: 12px;
         color: var(--muted-2);
         font-size: 13px;
+      }
+
+      .subsection {
+        padding-top: 10px;
+      }
+
+      .subsection small {
+        color: var(--muted-2);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+      }
+
+      .subsection h3 {
+        margin: 12px 0 18px;
+        font-size: 28px;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
       }
 
       .principles {
@@ -596,7 +697,7 @@ const quotes = [
       .principle p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.74;
+        line-height: 1.78;
       }
 
       .about {
@@ -674,9 +775,11 @@ const quotes = [
         .featured-band,
         .about-grid,
         .grid,
+        .more-grid,
         .principles-grid,
         .hero-metrics,
-        .quote-track {
+        .quote-track,
+        .proof-grid {
           grid-template-columns: 1fr;
         }
 
@@ -713,7 +816,8 @@ const quotes = [
         .featured-secondary,
         .principle,
         .metric,
-        .quote {
+        .quote,
+        .proof-item {
           border-radius: 24px;
         }
       }
@@ -803,53 +907,35 @@ const quotes = [
         </div>
       </section>
 
-<section class="container" style="padding:40px 0 20px;">
-  <div style="display:grid; gap:20px;">
+      <section class="social-proof container">
+        <div class="proof-grid">
+          {proof.map((item, index) => (
+            <div class={`proof-item reveal delay-${(index % 4) + 1}`}>{item}</div>
+          ))}
+        </div>
+      </section>
 
-    <!-- Schema mentale -->
-    <div style="
-      border:1px solid rgba(255,255,255,0.1);
-      border-radius:20px;
-      padding:24px;
-      text-align:center;
-      background:rgba(255,255,255,0.03);
-    ">
+      <section class="mind-model container">
+        <div class="mind-grid">
+          <div class="glass mind-box reveal">
+            <div class="mind-label">Come funziona la mente</div>
 
-      <div style="font-size:14px; opacity:0.6; margin-bottom:10px;">
-        Come funziona la mente
-      </div>
+            <div class="mind-flow">
+              <span>Evento</span>
+              <span class="mind-arrow">→</span>
+              <span>Pensiero</span>
+              <span class="mind-arrow">→</span>
+              <span>Emozione</span>
+              <span class="mind-arrow">→</span>
+              <span>Azione</span>
+            </div>
+          </div>
 
-      <div style="
-        font-size:18px;
-        display:flex;
-        justify-content:center;
-        gap:12px;
-        flex-wrap:wrap;
-      ">
-        <span>Evento</span>
-        <span>→</span>
-        <span>Pensiero</span>
-        <span>→</span>
-        <span>Emozione</span>
-        <span>→</span>
-        <span>Azione</span>
-      </div>
-
-    </div>
-
-    <!-- Citazione -->
-    <div style="
-      border-left:3px solid white;
-      padding:16px 20px;
-      font-size:18px;
-      max-width:600px;
-      opacity:0.9;
-    ">
-      “Non sono gli eventi a determinare come vivi, ma il modo in cui li interpreti.”
-    </div>
-
-  </div>
-</section>
+          <div class="mind-quote reveal delay-1">
+            “Non sono gli eventi a determinare come vivi, ma il modo in cui li interpreti.”
+          </div>
+        </div>
+      </section>
 
       <section class="quote-strip container">
         <div class="quote-track">
@@ -897,7 +983,27 @@ const quotes = [
         </div>
 
         <div class="grid">
-          {posts.map((post, index) => (
+          {mainPosts.map((post, index) => (
+            <article class={`card reveal delay-${(index % 4) + 1}`}>
+              <div class="meta-line">{post.category} · {post.time}</div>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+
+              <div class="card-bottom">
+                <span>Apri articolo</span>
+                <span>→</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="subsection reveal" style="margin-top: 34px;">
+          <small>Continua a esplorare</small>
+          <h3>Altri articoli da leggere dopo.</h3>
+        </div>
+
+        <div class="more-grid">
+          {morePosts.map((post, index) => (
             <article class={`card reveal delay-${(index % 4) + 1}`}>
               <div class="meta-line">{post.category} · {post.time}</div>
               <h3>{post.title}</h3>
