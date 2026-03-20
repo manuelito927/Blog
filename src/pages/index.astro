@@ -1,54 +1,47 @@
 ---
-// DATASET: Rigore e Documentazione
 const metadata = {
-  title: "Manuel | Analisi Scientifica della Mente e della Performance",
-  description: "Archivio di studi e riflessioni basate su evidenze scientifiche in psicologia cognitiva, filosofia del comportamento e scienze dello sport."
+  title: "Manuel | Mente, Presenza, Disciplina",
+  description: "Un blog editoriale su psicologia, filosofia e performance interiore. Idee chiare, riflessioni profonde e strumenti per capire meglio la mente."
 };
-
-const categories = [
-  { name: "Psicologia Cognitiva", slug: "psicologia" },
-  { name: "Filosofia Comportamentale", slug: "filosofia" },
-  { name: "Scienze dello Sport", slug: "sport" }
-];
 
 const featuredPost = {
   id: 1,
-  category: "Neuroscienze",
-  title: "Meccanismi neurali della resilienza: oltre il concetto di forza di volontà",
-  excerpt: "Un'analisi approfondita su come i circuiti della corteccia prefrontale mediale modulano la risposta allo stress cronico e alla fatica.",
+  category: "Mente",
+  title: "La qualità dei tuoi pensieri cambia il modo in cui vivi le giornate",
+  excerpt: "Non è solo ciò che accade a determinare come stai, ma il filtro mentale con cui leggi ciò che ti accade. Capire questo cambia molte cose.",
   date: "14 Marzo 2026",
-  readingTime: "12 min",
-  citations: 8
+  readingTime: "8 min",
+  citations: 6
 };
 
 const recentArticles = [
   {
-    category: "Psicologia dello Sport",
-    title: "L'interferenza contestuale nell'apprendimento motorio",
-    excerpt: "Perché la varietà degli stimoli durante l'allenamento produce una ritenzione mnemonica superiore rispetto alla ripetizione costante.",
-    time: "8 min",
-    level: "Avanzato"
+    category: "Psicologia",
+    title: "Perché la mente nota più facilmente ciò che manca",
+    excerpt: "Un meccanismo antico, ancora attivo, che spesso ti porta a vedere prima il rischio e solo dopo la possibilità.",
+    time: "6 min",
+    level: "Essenziale"
   },
   {
     category: "Filosofia",
-    title: "Epitteto e la neuroplasticità: convergenze tra Stoicismo e CBT",
-    excerpt: "Come le antiche tecniche di ristrutturazione cognitiva trovano oggi conferma nei processi di rimodellamento sinaptico.",
-    time: "10 min",
+    title: "Accettare non significa arrendersi",
+    excerpt: "C’è una differenza sottile ma decisiva tra rinunciare e smettere di combattere ciò che non puoi controllare.",
+    time: "7 min",
     level: "Intermedio"
   },
   {
-    category: "Psicologia Positiva",
-    title: "Il paradosso del benessere: analisi critica del concetto di 'Flow'",
-    excerpt: "Oltre Mihály Csíkszentmihályi: cosa dicono le recenti scansioni fMRI sullo stato di immersione totale.",
-    time: "7 min",
-    level: "Scientifico"
+    category: "Disciplina",
+    title: "La forza mentale si costruisce quando la motivazione cala",
+    excerpt: "La costanza non nasce dall’entusiasmo. Nasce dal rapporto che impari ad avere con la fatica e con il dubbio.",
+    time: "6 min",
+    level: "Pratico"
   }
 ];
 
 const methodology = [
-  { title: "Evidenze", desc: "Ogni articolo cita fonti peer-reviewed e studi clinici validati." },
-  { title: "Rigore", desc: "Nessuna promessa di 'hackeraggio veloce'. Solo analisi di processi biologici reali." },
-  { title: "Prassi", desc: "Trasposizione della teoria in protocolli applicabili basati sulla letteratura scientifica." }
+  { title: "Chiarezza", desc: "Ogni contenuto è scritto per rendere comprensibili idee complesse senza semplificarle in modo superficiale." },
+  { title: "Profondità", desc: "Psicologia, filosofia e performance vengono trattate come strumenti per leggere meglio la vita reale." },
+  { title: "Applicazione", desc: "Ogni riflessione cerca un punto concreto: qualcosa che puoi osservare, provare o portare con te." }
 ];
 ---
 
@@ -60,11 +53,11 @@ const methodology = [
     <meta name="description" content={metadata.description} />
     <style>
         :root {
-            --bg: #0a0b0e;
-            --surface: #14161c;
-            --accent: #6482ad;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
+            --bg: #0b0c10;
+            --surface: #141821;
+            --accent: #7f97bd;
+            --text-primary: #edf2f7;
+            --text-secondary: #9aa8bb;
             --border: rgba(255, 255, 255, 0.08);
             --font-serif: 'Georgia', serif;
             --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -85,7 +78,7 @@ const methodology = [
             color: var(--text-primary);
             font-family: var(--font-sans);
             margin: 0;
-            line-height: 1.7;
+            line-height: 1.72;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
         }
@@ -168,19 +161,26 @@ const methodology = [
 
         h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            line-height: 1.08;
-            margin: 0 0 1.75rem;
+            font-size: clamp(2.2rem, 5vw, 3.7rem);
+            line-height: 1.05;
+            margin: 0 0 1.4rem;
             font-weight: 400;
-            max-width: 14ch;
+            max-width: 13ch;
         }
 
         .hero-desc {
-            max-width: 700px;
+            max-width: 760px;
             color: var(--text-secondary);
             font-size: 1.08rem;
-            line-height: 1.78;
+            line-height: 1.82;
             margin: 0;
+        }
+
+        .hero-note {
+            margin-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
         }
 
         .main-grid {
@@ -224,9 +224,9 @@ const methodology = [
 
         h2 {
             font-family: var(--font-serif);
-            font-size: 2.2rem;
-            line-height: 1.14;
-            margin: 0 0 1.25rem;
+            font-size: 2.25rem;
+            line-height: 1.12;
+            margin: 0 0 1.15rem;
             font-weight: 400;
             max-width: 18ch;
         }
@@ -234,8 +234,8 @@ const methodology = [
         .excerpt {
             color: var(--text-secondary);
             font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.6rem;
+            line-height: 1.82;
+            margin-bottom: 1.5rem;
             max-width: 62ch;
         }
 
@@ -282,7 +282,7 @@ const methodology = [
             margin: 0;
             color: var(--text-secondary);
             font-size: 0.88rem;
-            line-height: 1.65;
+            line-height: 1.68;
         }
 
         .article-list {
@@ -300,7 +300,7 @@ const methodology = [
         .small-card h4 {
             font-family: var(--font-serif);
             font-size: 1.35rem;
-            line-height: 1.2;
+            line-height: 1.22;
             margin: 10px 0 12px;
             font-weight: 400;
             transition: color 0.3s ease;
@@ -430,13 +430,17 @@ const methodology = [
             h1 {
                 font-size: 2.1rem;
                 line-height: 1.08;
-                margin-bottom: 1.2rem;
+                margin-bottom: 1.1rem;
                 max-width: 100%;
             }
 
             .hero-desc {
                 font-size: 0.98rem;
-                line-height: 1.75;
+                line-height: 1.76;
+            }
+
+            .hero-note {
+                font-size: 0.8rem;
             }
 
             .main-grid {
@@ -465,7 +469,7 @@ const methodology = [
 
             .excerpt {
                 font-size: 0.96rem;
-                line-height: 1.72;
+                line-height: 1.74;
                 margin-bottom: 1.2rem;
             }
 
@@ -537,18 +541,23 @@ const methodology = [
         <nav>
             <div class="logo">Manuel <span>/</span> Archive</div>
             <div class="nav-links">
-                <a href="#articles">Indice</a>
-                <a href="#method">Metodologia</a>
+                <a href="#articles">Articoli</a>
+                <a href="#method">Approccio</a>
                 <a href="#about">Informazioni</a>
             </div>
         </nav>
 
         <header class="hero reveal">
-            <span class="hero-label">Pubblicazioni e Analisi</span>
-            <h1>L'intersezione tra neuroscienze applicate e comportamento umano.</h1>
+            <span class="hero-label">Riflessioni, psicologia, presenza</span>
+            <h1>Un luogo per capire meglio la mente e il modo in cui orienta la tua vita.</h1>
             <p class="hero-desc">
-                Un archivio di articoli di approfondimento tecnico. Nessuna semplificazione eccessiva, solo rigore metodologico per esplorare la mente, la filosofia e la prestazione sportiva.
+                Psicologia, filosofia e disciplina interiore si incontrano qui in una forma più chiara,
+                più leggibile e più vicina alla vita reale. Non per semplificare tutto, ma per aiutarti
+                a vedere con più precisione ciò che spesso resta confuso.
             </p>
+            <div class="hero-note">
+                Idee da leggere con calma. Strumenti da portare fuori dalla pagina.
+            </div>
         </header>
 
         <main class="main-grid">
@@ -558,11 +567,11 @@ const methodology = [
                         <span>{featuredPost.category}</span>
                         <span>{featuredPost.date}</span>
                         <span>{featuredPost.readingTime} lettura</span>
-                        <span>{featuredPost.citations} Citazioni</span>
+                        <span>{featuredPost.citations} riferimenti</span>
                     </div>
                     <h2>{featuredPost.title}</h2>
                     <p class="excerpt">{featuredPost.excerpt}</p>
-                    <div class="featured-cta">LEGGI L'ANALISI COMPLETA →</div>
+                    <div class="featured-cta">LEGGI L'ARTICOLO →</div>
                 </a>
 
                 <div class="article-list">
@@ -581,7 +590,7 @@ const methodology = [
 
             <aside id="method">
                 <div class="sidebar-section reveal">
-                    <h3>Metodologia</h3>
+                    <h3>Approccio</h3>
                     {methodology.map(m => (
                         <div class="sidebar-item">
                             <strong>{m.title}</strong>
@@ -591,9 +600,10 @@ const methodology = [
                 </div>
 
                 <div class="sidebar-section reveal">
-                    <h3>Livelli di Lettura</h3>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin: 0;">
-                        Gli articoli sono classificati in base alla densità di riferimenti bibliografici e alla complessità dei termini tecnici utilizzati.
+                    <h3>Come leggere</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.72; margin: 0;">
+                        Alcuni articoli sono più immediati, altri più densi. L’idea non è correre, ma trovare
+                        il ritmo giusto per capire davvero.
                     </p>
                 </div>
             </aside>
@@ -601,7 +611,7 @@ const methodology = [
 
         <footer id="about">
             <div class="footer-inner">
-                <div>© 2026 Manuel Archive. Tutti i diritti riservati. Fonti basate su letteratura peer-reviewed.</div>
+                <div>© 2026 Manuel Archive. Uno spazio editoriale dedicato a mente, presenza e disciplina interiore.</div>
                 <div class="footer-links">
                     <a href="#">RSS Feed</a>
                     <a href="#">Privacy Policy</a>
