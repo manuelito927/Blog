@@ -954,4 +954,142 @@ const readerPath = [
                 <h3>Come leggere questo blog</h3>
                 <p>
                   Non serve correre. L’idea è uscire da ogni articolo con una comprensione
-                  più ordinata, più precisa e più utile da usare
+                  più ordinata, più precisa e più utile da usare nella vita reale.
+                </p>
+              </div>
+
+              <div class="sidebar-card">
+                <h3>Argomenti principali</h3>
+                <div class="topics-grid">
+                  {categories.map((cat) => (
+                    <span class="topic-chip">{cat}</span>
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="reading-path" id="percorso">
+        <div class="container">
+          <div class="reading-head reveal">
+            <span class="section-label">Il percorso del lettore</span>
+            <h2>Capire, riconoscere, applicare.</h2>
+            <p>
+              Le persone restano quando percepiscono che stanno facendo un percorso.
+              Per questo la pagina comunica una progressione mentale chiara.
+            </p>
+          </div>
+
+          <div class="reading-grid">
+            {readerPath.map((item) => (
+              <div class="reading-card reveal">
+                <span class="reading-step">{item.step}</span>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="pillars" id="pilastri">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="section-label">Tre pilastri</span>
+              <h2>Ogni trasformazione interiore passa da qui.</h2>
+              <p>
+                Il sito deve comunicare struttura, non caos. Questi tre pilastri organizzano
+                l’intera identità editoriale del progetto.
+              </p>
+            </div>
+          </div>
+
+          <div class="pillars-grid">
+            {pillars.map((pillar) => (
+              <div class="pillar-card reveal">
+                <strong>{pillar.title}</strong>
+                <p>{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="container">
+          <div class="about-shell reveal">
+            <div>
+              <div class="about-head">
+                <span class="section-label">About</span>
+                <h2>Un blog pensato per chi vuole crescere senza farsi ingannare dal rumore.</h2>
+              </div>
+
+              <div class="about-copy">
+                <p>
+                  L’obiettivo di questo spazio è unire rigore, leggibilità e impatto reale.
+                  Non accumulare contenuti, ma costruire nel tempo un archivio autorevole
+                  su mente, attenzione, abitudini, carattere e presenza.
+                </p>
+              </div>
+            </div>
+
+            <div class="newsletter-box">
+              <strong>Resta dentro il progetto</strong>
+              <p>
+                Quando vorrai, qui puoi inserire newsletter, lead magnet, raccolta email
+                o un percorso premium senza rovinare l’eleganza della pagina.
+              </p>
+
+              <div class="newsletter-actions">
+                <a href="#">Iscriviti</a>
+                <a href="#">Leggi gli ultimi articoli</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            © 2026 Manuel. Uno spazio editoriale su mente, carattere, attenzione e trasformazione interiore.
+          </div>
+
+          <div class="footer-links">
+            <a href="#">Archivio</a>
+            <a href="#">RSS</a>
+            <a href="#">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const pb = document.getElementById("pb");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        pb.style.width = progress + "%";
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
