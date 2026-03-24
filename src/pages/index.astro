@@ -1,248 +1,265 @@
 ---
-// CONFIGURAZIONE SCIENTIFICA DEI DATI
+// ARCHITETTURA DATI: RIGORE E AUTORITÀ
 const metadata = {
-  title: "MANUEL ARCHIVE | Analisi Scientifica del Comportamento",
-  description: "Ricerca indipendente su neuroscienze applicate, psicologia della performance e modelli mentali per l'alto rendimento."
+  title: "MANUEL ARCHIVE | Neuroscienze e Comportamento",
+  description: "Ricerca indipendente su performance, biologia del carattere e modelli mentali."
 };
 
-const classifications = ["Neurobiologia", "Psicologia Cognitiva", "Filosofia del Comportamento"];
-
-const featuredResearch = {
-  category: "Neuroplasticità",
-  title: "Riprogrammazione Neurale: Protocolli di modifica del carattere basati su evidenze",
-  excerpt: "Un'analisi dei meccanismi sinaptici che regolano la risposta allo stress e come i processi di 'Top-Down regulation' possono essere allenati sistematicamente.",
-  time: "12 min",
-  reliability: "98%", // Fattore di autorità
-  citations: 14
+const featured = {
+  label: "RESEARCH_PAPER #01",
+  title: "La Biologia della Resilienza: Meccanismi di Regolazione Top-Down",
+  excerpt: "Perché alcuni sistemi nervosi collassano sotto stress mentre altri si potenziano? Analisi dei circuiti della corteccia prefrontale.",
+  readTime: "12 MIN",
+  citations: 18,
+  level: "AVANZATO"
 };
 
-const researchPapers = [
+const articles = [
   {
-    category: "Bias Cognitivi",
-    title: "L'architettura dell'errore: perché la tua mente distorce la realtà",
-    excerpt: "Analisi sistematica dei processi euristici che portano a decisioni sub-ottimali in condizioni di incertezza.",
-    time: "8 min",
-    difficulty: "Intermedio"
+    category: "PSICOLOGIA COGNITIVA",
+    title: "Bias di Conferma e Dissonanza: L'architettura dell'inganno",
+    time: "8 MIN",
+    preview: "Come il cervello filtra la realtà per proteggere l'identità a discapito della verità."
   },
   {
-    category: "Performance",
-    title: "Meccanismi di Adattamento: la scienza della costanza",
-    excerpt: "Studio sui sistemi di feedback dopaminergico e sulla loro manipolazione per sostenere lo sforzo a lungo termine.",
-    time: "10 min",
-    difficulty: "Avanzato"
+    category: "NEUROCHIMICA",
+    title: "Dopamina e Sforzo: Il costo biologico della disciplina",
+    time: "10 MIN",
+    preview: "Analisi dei recettori D2 e della loro influenza sulla perseveranza nel lungo periodo."
   },
   {
-    category: "Sistemi Complessi",
-    title: "Stoicismo e CBT: convergenze cliniche nella gestione del caos",
-    excerpt: "Come le antiche tecniche di distacco trovano conferma nei moderni protocolli di ristrutturazione cognitiva.",
-    time: "15 min",
-    difficulty: "Scientifico"
+    category: "FILOSOFIA",
+    title: "Logos e Prassi: La razionalità applicata al caos",
+    time: "7 MIN",
+    preview: "Dall'antico stoicismo alle moderne terapie comportamentali: un ponte necessario."
   }
-];
-
-const methodology = [
-  { title: "Peer-Reviewed", desc: "Ogni tesi è supportata da studi clinici o letteratura scientifica validata." },
-  { title: "No-Hype Policy", desc: "Assenza totale di promesse sensazionalistiche. Solo dati e protocolli applicativi." },
-  { title: "Analisi Critica", desc: "Approccio multidisciplinare che unisce biochimica, sociologia ed economia." }
 ];
 ---
 
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>{metadata.title}</title>
     <style>
         :root {
-            /* Palette Scientifica: Deep Professionalism */
-            --bg: #0c0d10;
-            --surface: #16181d;
-            --accent: #5e81ac; /* Blu Accademico: ispira fiducia e stabilità */
-            --accent-gold: #b48ead; /* Muted Gold per elementi di valore */
-            --text-main: #e5e9f0;
-            --text-muted: #818996;
-            --border: rgba(255, 255, 255, 0.05);
-            --font-authoritative: 'Spectral', serif; /* Font per titoli: serio, editoriale */
-            --font-clean: 'Inter', system-ui, sans-serif; /* Font per lettura: alta leggibilità */
+            /* Palette Scientifica (Oxford-Tech Style) */
+            --bg: #08090a;
+            --surface: #111216;
+            --surface-alt: #1a1c22;
+            --accent: #7d9bbd; /* Blu Ardesia: Calma e Autorità */
+            --text-p: #e2e8f0; /* Bianco sporco per non affaticare gli occhi */
+            --text-s: #94a3b8;
+            --border: rgba(255, 255, 255, 0.06);
+            --font-serif: 'Charter', 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Spectral:ital,wght@0,400;0,700;1,400&display=swap');
-
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
             background-color: var(--bg);
-            color: var(--text-main);
-            font-family: var(--font-clean);
-            line-height: 1.8; /* Ottimale per la lettura prolungata */
+            color: var(--text-p);
+            font-family: var(--font-sans);
             margin: 0;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            overflow-x: hidden;
+            text-rendering: optimizeLegibility;
         }
 
-        /* Barra di Progresso Neuro-Stimolante */
-        #reading-progress {
+        /* BARRA DI PROGRESSO (Dopamine Loop) */
+        #progress-bar {
             position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
-            z-index: 1000; width: 0%; transition: width 0.2s;
+            background: linear-gradient(90deg, var(--accent), #fff);
+            z-index: 9999; width: 0%;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        .container { 
+            width: min(1200px, 100% - 40px); 
+            margin: 0 auto; 
+        }
 
-        /* Navigation: Institutional Style */
+        /* HEADER: Mobile Optimized */
         nav {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--border);
         }
-        .logo { font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 30px; font-size: 0.75rem; letter-spacing: 1px; color: var(--text-muted); }
+        .logo { 
+            font-weight: 800; font-size: 0.85rem; letter-spacing: 2px; 
+            text-transform: uppercase; color: var(--accent);
+        }
+        .nav-meta { font-size: 0.7rem; color: var(--text-s); font-weight: 600; }
 
-        /* Hero: The Authority Statement */
-        .hero { padding: 100px 0 60px; text-align: left; max-width: 900px; }
-        .hero-label { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        /* HERO: The Hook */
+        .hero { padding: 4rem 0 3rem; }
+        .hero-tag { 
+            font-size: 0.7rem; font-weight: 700; color: var(--accent); 
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;
+        }
         h1 { 
-            font-family: var(--font-authoritative);
-            font-size: clamp(2.5rem, 6vw, 4.2rem); 
-            line-height: 1.1; margin-bottom: 30px; font-weight: 400;
+            font-family: var(--font-serif);
+            font-size: clamp(2.2rem, 8vw, 4rem); 
+            line-height: 1.1; font-weight: 400; margin: 0 0 1.5rem 0;
+            letter-spacing: -0.02em;
         }
-        .hero-desc { color: var(--text-muted); font-size: 1.2rem; line-height: 1.6; border-left: 2px solid var(--accent); padding-left: 30px; }
-
-        /* Grid System: High-End Editorial */
-        .main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 60px; }
-
-        /* Featured Analysis */
-        .featured-research { 
-            background: var(--surface); 
-            padding: 40px; border-radius: 4px; border: 1px solid var(--border);
-            text-decoration: none; color: inherit; display: block;
-            transition: all 0.4s ease;
-        }
-        .featured-research:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .meta-data { display: flex; gap: 20px; font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; font-weight: 700; }
-        h2 { font-family: var(--font-authoritative); font-size: 2.2rem; margin-bottom: 20px; font-weight: 400; }
-
-        /* Research List */
-        .papers-list { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; }
-        .paper-card { text-decoration: none; color: inherit; padding-bottom: 30px; border-bottom: 1px solid var(--border); transition: 0.3s; }
-        .paper-card:hover h3 { color: var(--accent); }
-        h3 { font-family: var(--font-authoritative); font-size: 1.6rem; margin: 15px 0; font-weight: 400; }
-
-        /* Sidebar: Social Proof & Methodology */
-        .sidebar-box { background: #1a1c23; padding: 30px; border-radius: 4px; margin-bottom: 30px; border: 1px solid var(--border); }
-        .sidebar-box h4 { text-transform: uppercase; font-size: 0.75rem; color: var(--accent); margin-top: 0; letter-spacing: 2px; }
-        .method-item { margin-bottom: 20px; }
-        .method-item strong { display: block; font-size: 0.9rem; margin-bottom: 5px; }
-        .method-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
-
-        /* Typography for Reading Pleasure */
-        .excerpt { font-size: 1.05rem; color: var(--text-muted); max-width: 65ch; }
-
-        @media (max-width: 900px) {
-            .main-layout { grid-template-columns: 1fr; }
-            .hero { padding: 60px 0; }
+        .hero-sub { 
+            font-size: 1.1rem; color: var(--text-s); max-width: 600px; 
+            line-height: 1.7; border-left: 1px solid var(--accent); padding-left: 20px;
         }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        /* GRID SYSTEM (Responsive) */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2rem 0 5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .content-grid { grid-template-columns: 2fr 1fr; gap: 4rem; }
+        }
+
+        /* FEATURED CARD */
+        .featured-card {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            text-decoration: none; color: inherit;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .featured-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .card-meta { display: flex; gap: 1rem; font-size: 0.65rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; }
+
+        /* SECONDARY ARTICLES */
+        .article-list { display: grid; gap: 2rem; }
+        .article-item { 
+            text-decoration: none; color: inherit;
+            padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+            display: block; transition: 0.3s;
+        }
+        .article-item:hover { opacity: 0.7; }
+        .article-item h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400; margin: 0.5rem 0; }
+        .article-item p { color: var(--text-s); font-size: 0.9rem; margin: 0; }
+
+        /* SIDEBAR (Authority Tools) */
+        .sidebar { display: grid; gap: 2rem; align-content: start; }
+        .sidebar-box { 
+            background: var(--surface-alt); padding: 1.5rem; border-radius: 4px; 
+            border: 1px solid var(--border);
+        }
+        .sidebar-box h4 { 
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; 
+            color: var(--accent); margin-top: 0;
+        }
+        .sidebar-text { font-size: 0.85rem; color: var(--text-s); margin: 0; }
+
+        /* FOOTER */
+        footer { 
+            padding: 4rem 0; border-top: 1px solid var(--border); 
+            text-align: center; color: var(--text-s); font-size: 0.75rem; 
+        }
+
+        /* ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <div id="reading-progress"></div>
+    <div id="progress-bar"></div>
 
     <div class="container">
         <nav>
-            <div class="logo">MANUEL <span>/</span> LABORATORY</div>
-            <div class="nav-links">
-                <span>INDEX_2026</span>
-                <span>ARCHIVE</span>
-                <span>METHODOLOGY</span>
-            </div>
+            <div class="logo">MANUEL // ARCHIVE</div>
+            <div class="nav-meta">EST. 2026 // OPEN ACCESS</div>
         </nav>
 
         <header class="hero reveal">
-            <span class="hero-label">Pubblicazione Indipendente</span>
-            <h1>Analisi tecnica dei processi mentali e della performance umana.</h1>
-            <p class="hero-desc">
-                Benvenuto in uno spazio di rigore metodologico. Qui la psicologia e le neuroscienze non sono "consigli", ma strumenti di ingegneria del carattere.
+            <span class="hero-tag">Laboratorio di Ricerca Comportamentale</span>
+            <h1>Analisi tecnica della mente e dei sistemi di performance.</h1>
+            <p class="hero-sub">
+                Benvenuto. Qui non troverai crescita personale generica, ma analisi dei processi bio-psicologici che governano l'essere umano.
             </p>
         </header>
 
-        <main class="main-layout">
-            <section>
-                <a href="#" class="featured-research reveal">
-                    <div class="meta-data">
-                        <span>{featuredResearch.category}</span>
-                        <span>•</span>
-                        <span>{featuredResearch.time} di lettura</span>
-                        <span>•</span>
-                        <span>{featuredResearch.citations} Citazioni bibliografiche</span>
+        <main class="content-grid">
+            <section class="reveal">
+                <a href="#" class="featured-card">
+                    <div class="card-meta">
+                        <span>{featured.label}</span>
+                        <span>{featured.readTime}</span>
+                        <span>{featured.citations} CITAZIONI</span>
                     </div>
-                    <h2>{featuredResearch.title}</h2>
-                    <p class="excerpt">{featuredResearch.excerpt}</p>
-                    <div style="margin-top: 30px; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px;">ACCEDI ALL'ANALISI COMPLETA →</div>
+                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin: 0 0 1rem 0; font-weight: 400;">{featured.title}</h2>
+                    <p style="color: var(--text-s); margin-bottom: 2rem;">{featured.excerpt}</p>
+                    <span style="font-size: 0.8rem; font-weight: 700; border-bottom: 1px solid var(--accent);">LEGGI IL PAPER INTEGRALE</span>
                 </a>
 
-                <div class="papers-list">
-                    {researchPapers.map(paper => (
-                        <a href="#" class="paper-card reveal">
-                            <div class="meta-data" style="margin-bottom: 10px;">
-                                <span>{paper.category}</span>
-                                <span style="color: var(--text-muted)">LVL: {paper.difficulty}</span>
-                            </div>
-                            <h3>{paper.title}</h3>
-                            <p class="excerpt" style="font-size: 0.95rem;">{paper.excerpt}</p>
-                        </a>
-                    ))}
+                <div style="margin-top: 4rem;">
+                    <h2 style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; color: var(--text-s);">Ultimi Aggiornamenti</h2>
+                    <div class="article-list">
+                        {articles.map(art => (
+                            <a href="#" class="article-item">
+                                <div class="card-meta" style="margin-bottom: 0.2rem;">
+                                    <span>{art.category}</span>
+                                    <span>{art.time}</span>
+                                </div>
+                                <h3>{art.title}</h3>
+                                <p>{art.preview}</p>
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            <aside>
+            <aside class="sidebar">
                 <div class="sidebar-box reveal">
-                    <h4>Metodologia di Ricerca</h4>
-                    {methodology.map(m => (
-                        <div class="method-item">
-                            <strong>{m.title}</strong>
-                            <p>{m.desc}</p>
-                        </div>
-                    ))}
+                    <h4>Metodologia</h4>
+                    <p class="sidebar-text">
+                        Ogni articolo segue rigorosi criteri di peer-review interna. Citiamo solo fonti primarie da riviste di settore (Nature, Science, PubMed).
+                    </p>
                 </div>
 
-                <div class="sidebar-box reveal" style="background: linear-gradient(135deg, #16181d 0%, #1e222a 100%);">
-                    <h4>Status del Laboratorio</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">
-                        Stiamo attualmente analizzando dati sulla <strong>ritenzione mnemonica a lungo termine</strong>. I nuovi rapporti vengono pubblicati ogni martedì alle 09:00.
-                    </p>
-                    <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-                        <span style="width: 8px; height: 8px; background: #a3be8c; border-radius: 50%; display: inline-block;"></span>
-                        <span style="font-size: 0.7rem; font-weight: bold;">LIVE: AGGIORNAMENTO ARCHIVIO</span>
+                <div class="sidebar-box reveal" style="border-left: 3px solid var(--accent);">
+                    <h4>Livello di Analisi</h4>
+                    <div style="display: flex; gap: 5px; margin-top: 10px;">
+                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
+                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
+                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
+                        <span style="width: 20%; height: 4px; background: var(--border);"></span>
+                        <span style="width: 20%; height: 4px; background: var(--border);"></span>
                     </div>
+                    <p class="sidebar-text" style="margin-top: 10px;">Complessità media attuale: <strong>72% (Technical)</strong></p>
+                </div>
+
+                <div class="sidebar-box reveal">
+                    <h4>Status dell'Archivio</h4>
+                    <p class="sidebar-text">
+                        Aggiornato in tempo reale. Nuove analisi caricate ogni 72 ore.
+                    </p>
                 </div>
             </aside>
         </main>
 
-        <footer style="padding: 100px 0 40px; text-align: center; border-top: 1px solid var(--border); margin-top: 100px;">
-            <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px;">
-                © 2026 MANUEL LABORATORY - ANALISI BASATE SU EVIDENZE SCIENTIFICHE
-            </p>
+        <footer>
+            <p>© 2026 MANUEL ARCHIVE. NESSUNA IA È STATA UTILIZZATA PER LA VALIDAZIONE SCIENTIFICA DELLE TESI.</p>
         </footer>
     </div>
 
     <script>
-        // Progress Bar Logic
+        // Progress Bar
         window.onscroll = () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const scroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("reading-progress").style.width = scrolled + "%";
+            document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
         };
 
-        // Scroll Reveal Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+        // Smooth Reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
     </script>
 </body>
 </html>
