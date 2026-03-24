@@ -4,92 +4,480 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INTUS — Filosofia da indossare</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+<meta name="description" content="INTUS unisce blog, shop, identità, psicologia e filosofia in un sito editoriale-ecommerce elegante e memorabile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Inter,sans-serif;background:#f4f1ec;color:#1c1c1c}
-.container{max-width:1200px;margin:auto;padding:24px}
-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem)}
-h2{font-size:2rem;margin-bottom:10px}
-p{color:#555;line-height:1.6}
-.hero{padding:80px 0}
+:root{
+  --bg:#f4f1ec;
+  --bg-2:#eee7dd;
+  --paper:rgba(255,255,255,.82);
+  --paper-strong:rgba(255,255,255,.94);
+  --ink:#1c1c1c;
+  --muted:#5f5a54;
+  --line:rgba(28,28,28,.08);
+  --accent:#7a5b43;
+  --accent-2:#203a37;
+  --gold:#b08c52;
+  --shadow:0 20px 50px rgba(0,0,0,.06);
+  --radius-xl:28px;
+  --radius-lg:20px;
+  --radius-md:14px;
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(176,140,82,.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(32,58,55,.10), transparent 32%),
+    linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);
+}
+a{color:inherit}
+img{width:100%;display:block}
+.container{width:min(calc(100% - 32px),var(--max));margin:auto}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent-2));z-index:999}
+.glass,.card,.nav,.quote-box,.feature,.product-card,.article-card,.newsletter,.footer-card,.trust-grid .item{
+  background:var(--paper);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+}
+.nav-wrap{position:sticky;top:14px;z-index:100;padding-top:14px}
+.nav{
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 18px;
+}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff;font-weight:800
+}
+.brand strong{display:block;font-size:.98rem}
+.brand span{display:block;font-size:.82rem;color:var(--muted)}
+.nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:.95rem}
+.nav-links a:hover{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:12px 18px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;
+  font-weight:700;transition:transform .18s ease,opacity .18s ease,box-shadow .18s ease
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff;box-shadow:0 12px 28px rgba(32,58,55,.18)}
+.btn-secondary{background:rgba(255,255,255,.8);color:var(--ink);border:1px solid var(--line)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+  border:1px solid rgba(122,91,67,.16);background:rgba(255,255,255,.58);
+  color:var(--accent-2);font-size:.78rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase
+}
+h1,h2,h3{margin:0;line-height:1.02;letter-spacing:-.035em}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:600}
+h1{font-size:clamp(3.1rem,7vw,6.2rem);max-width:11ch}
+h2{font-size:clamp(2.2rem,5vw,3.8rem);max-width:12ch}
+h3{font-size:clamp(1.35rem,2.8vw,1.9rem)}
+p{margin:0;color:var(--muted);line-height:1.68}
+.hero{padding:56px 0 32px;min-height:90vh;display:grid;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.hero-copy p{max-width:62ch;font-size:1.06rem;margin-top:20px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.hero-box{
+  border-radius:var(--radius-xl);padding:28px;overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74)),
+    radial-gradient(circle at top right, rgba(176,140,82,.16), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(32,58,55,.14), transparent 38%);
+}
+.hero-box img{height:360px;object-fit:cover;border-radius:22px;margin-top:18px}
+.price{font-size:1.3rem;font-weight:800;color:var(--ink)}
+.preview-row{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-top:14px}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.trust-grid .item{padding:18px;border-radius:18px}
+.trust-grid small{display:block;text-transform:uppercase;letter-spacing:.12em;color:var(--accent-2);font-weight:800;margin-bottom:4px}
+section{padding:42px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.section-head p{max-width:58ch}
 .grid{display:grid;gap:24px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.card{background:white;border-radius:20px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,0.05);transition:0.3s}
-.card:hover{transform:translateY(-5px)}
-.btn{display:inline-block;padding:12px 18px;border-radius:999px;background:#1c1c1c;color:white;text-decoration:none;margin-top:12px}
-img{width:100%;border-radius:14px}
-.section{margin-top:60px}
-.quote{font-family:'Cormorant Garamond',serif;font-size:2rem}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.card,.quote-box,.feature,.product-card,.article-card,.newsletter,.footer-card{border-radius:var(--radius-xl)}
+.card,.quote-box,.feature,.product-card,.article-card{padding:24px}
+.quote-box blockquote{
+  margin:16px 0 12px;font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.02;color:var(--ink)
+}
+.two-col{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px}
+.stack{display:grid;gap:18px}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap}
+.tag{padding:8px 10px;border-radius:999px;background:rgba(32,58,55,.08);color:var(--accent-2);font-size:.78rem;font-weight:800}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.article-footer,.product-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:18px}
+.product-card img{aspect-ratio:4/4.8;object-fit:cover;border-radius:18px;margin-bottom:16px}
+.product-top{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.benefits{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.benefit{padding:7px 10px;border-radius:999px;background:rgba(122,91,67,.08);color:var(--accent);font-size:.8rem;font-weight:700}
+.identity-band{
+  border-radius:calc(var(--radius-xl) + 4px);padding:28px;
+  background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.78));
+  border:1px solid var(--line);box-shadow:var(--shadow);
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center
+}
+.newsletter{
+  padding:32px;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82))
+}
+.form{display:flex;gap:12px;flex-wrap:wrap;justify-content:end}
+input[type="email"]{
+  min-width:min(100%,340px);padding:14px 16px;border-radius:999px;border:1px solid var(--line);
+  font:inherit;color:var(--ink);background:rgba(255,255,255,.9);outline:none
+}
+input[type="email"]:focus{border-color:rgba(32,58,55,.22);box-shadow:0 0 0 4px rgba(32,58,55,.08)}
+.faq{display:grid;gap:14px}
+details{padding:16px 18px;border-radius:16px;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details p{margin-top:10px}
+footer{padding:22px 0 56px}
+.footer-card{padding:24px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:end}
+.footer-links a{text-decoration:none;font-weight:700;opacity:.85}
+.footer-links a:hover{opacity:1}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media (max-width:1100px){
+  .hero-grid,.two-col,.grid-3,.newsletter,.identity-band,.footer-card{grid-template-columns:1fr}
+  .form,.footer-links{justify-content:start}
+}
+@media (max-width:840px){
+  .nav-links{display:none}
+  .trust-grid{grid-template-columns:1fr}
+  .section-head{flex-direction:column;align-items:start}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+
+<div class="container nav-wrap">
+  <nav class="nav glass" aria-label="Navigazione principale">
+    <a href="#top" class="brand">
+      <div class="brand-mark">I</div>
+      <div>
+        <strong>INTUS</strong>
+        <span>Blog + Shop identitario</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#manifesto">Manifesto</a>
+      <a href="#shop">Shop</a>
+      <a href="#journal">Journal</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-secondary" href="#newsletter">Ricevi il saggio</a>
+  </nav>
+</div>
+
 <div class="container">
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Psicologia, stile, identità</div>
+        <h1>Non stai comprando vestiti. Stai scegliendo chi essere.</h1>
+        <p>INTUS unisce blog, shop, filosofia ed estetica per creare oggetti che comunicano identità. Qui il prodotto non è separato dal pensiero: ogni capo viene presentato come forma, segnale, esperienza e scelta personale.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#shop">Esplora i prodotti</a>
+          <a class="btn btn-secondary" href="#journal">Leggi il journal</a>
+        </div>
+      </div>
 
-<section class="hero">
-<h1>Non stai comprando vestiti.<br>Stai scegliendo chi essere.</h1>
-<p>INTUS unisce psicologia, filosofia ed estetica per creare oggetti che comunicano identità. Ogni scelta è un segnale.</p>
-<a class="btn" href="#shop">Esplora</a>
-</section>
+      <aside class="hero-box reveal">
+        <div class="eyebrow">Prodotto in evidenza</div>
+        <h2 style="margin-top:12px;max-width:10ch;">Lucidità</h2>
+        <p style="margin-top:14px;max-width:42ch;">Una maglietta pulita, pensata per chi vuole esprimere selezione, calma, controllo e intenzione. Il minimalismo qui non è vuoto: è lettura immediata.</p>
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80" alt="Maglietta minimal color panna su fondo neutro">
+        <div class="preview-row">
+          <div>
+            <strong>Perché funziona</strong>
+            <p style="margin-top:6px;max-width:34ch;">Ridurre il rumore visivo aiuta a trasmettere ordine, sobrietà e status intenzionale.</p>
+          </div>
+          <div class="price">€34</div>
+        </div>
+        <div class="hero-actions" style="margin-top:18px;">
+          <a class="btn btn-primary" href="#shop">Acquista ora</a>
+          <a class="btn btn-secondary" href="#manifesto">Leggi il perché</a>
+        </div>
+      </aside>
+    </div>
 
-<section class="section">
-<h2>Perché compriamo davvero</h2>
-<div class="card">
-<p><strong>Psicologia sociale:</strong> il consumo è signaling. Le persone comunicano status, valori e appartenenza attraverso ciò che indossano.</p>
-<p><strong>Economia comportamentale:</strong> le decisioni non sono razionali ma guidate da identità e contesto.</p>
-<p><strong>Filosofia:</strong> ciò che scegli diventa parte della tua narrativa esistenziale.</p>
+    <div class="trust-grid reveal">
+      <div class="item"><small>Spedizione</small><strong>48–72 ore</strong><p>Tracking chiaro e rassicurante.</p></div>
+      <div class="item"><small>Resi</small><strong>14 giorni</strong><p>Procedura semplice e leggibile.</p></div>
+      <div class="item"><small>Materiali</small><strong>Dettagli chiari</strong><p>Niente ambiguità nella scheda.</p></div>
+      <div class="item"><small>Newsletter</small><strong>1 invio / settimana</strong><p>Contenuti utili, non rumore.</p></div>
+    </div>
+  </section>
+
+  <section id="manifesto">
+    <div class="two-col">
+      <aside class="quote-box reveal">
+        <div class="eyebrow">Manifesto</div>
+        <blockquote>Le persone non comprano prodotti. Comprano versioni di sé.</blockquote>
+        <p>INTUS nasce da un'idea semplice: ciò che indossi parla prima di te. Per questo uniamo contenuto editoriale e shop in un'unica esperienza. Prima il lettore si riconosce. Poi sceglie.</p>
+      </aside>
+
+      <div class="stack">
+        <article class="article-card reveal">
+          <div class="meta">
+            <div class="tag-row"><span class="tag">Psicologia sociale</span><span class="tag">Signaling</span></div>
+            <span>04 min</span>
+          </div>
+          <h3>Perché compriamo davvero</h3>
+          <p>Le scelte di consumo non sono solo funzionali. Comunicano status, valori, gusto e appartenenza. Un brand memorabile rende esplicita questa dinamica e la traduce in forme desiderabili e coerenti.</p>
+          <div class="article-footer">
+            <span>Dal significato all'acquisto</span>
+            <a class="btn btn-secondary" href="#journal">Approfondisci</a>
+          </div>
+        </article>
+
+        <article class="article-card reveal">
+          <div class="meta">
+            <div class="tag-row"><span class="tag">Filosofia</span><span class="tag">Scelta</span></div>
+            <span>05 min</span>
+          </div>
+          <h3>Comprare meglio è una pratica di selezione</h3>
+          <p>Non tutto ciò che piace rappresenta davvero. Il sito aiuta il lettore a farsi una domanda più precisa: questo oggetto è coerente con il modo in cui desidero apparire e sentirmi?</p>
+          <div class="article-footer">
+            <span>Meno impulso, più identità</span>
+            <a class="btn btn-secondary" href="#shop">Vedi i prodotti</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Shop</div>
+        <h2>Oggetti che una persona può desiderare e capire.</h2>
+      </div>
+      <p>Ogni prodotto è costruito come micro-racconto: immagine forte, prezzo leggibile, benefici concreti e significato identitario. Così la scelta risulta più chiara, più memorabile e più facile da compiere.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="product-card reveal">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80" alt="Maglietta minimal color panna su fondo neutro">
+        <div class="product-top">
+          <div>
+            <div class="tag-row"><span class="tag">Maglietta</span><span class="tag">Minimal</span></div>
+            <h3 style="margin-top:10px;">Lucidità</h3>
+          </div>
+          <div class="price" style="font-size:1.15rem;">€34</div>
+        </div>
+        <p>Minimalismo come segnale di controllo cognitivo. Ridurre il rumore visivo aumenta percezione di ordine, sobrietà e intenzione.</p>
+        <div class="benefits">
+          <span class="benefit">Cotone 240 gsm</span>
+          <span class="benefit">Vestibilità boxy</span>
+          <span class="benefit">Palette neutra</span>
+        </div>
+        <div class="product-footer">
+          <span>Presenza calma</span>
+          <a class="btn btn-primary" href="#newsletter">Compra Lucidità</a>
+        </div>
+      </article>
+
+      <article class="product-card reveal">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80" alt="Sneakers bianche e rosse in luce morbida">
+        <div class="product-top">
+          <div>
+            <div class="tag-row"><span class="tag">Scarpe</span><span class="tag">Direzione</span></div>
+            <h3 style="margin-top:10px;">Direzione</h3>
+          </div>
+          <div class="price" style="font-size:1.15rem;">€89</div>
+        </div>
+        <p>Le scarpe comunicano traiettoria e intenzione. Chi appare orientato e ordinato viene spesso percepito come più competente.</p>
+        <div class="benefits">
+          <span class="benefit">Suola leggera</span>
+          <span class="benefit">Comfort daily</span>
+          <span class="benefit">Uso versatile</span>
+        </div>
+        <div class="product-footer">
+          <span>Segnale di traiettoria</span>
+          <a class="btn btn-primary" href="#newsletter">Compra Direzione</a>
+        </div>
+      </article>
+
+      <article class="product-card reveal">
+        <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=80" alt="Orecchini minimal in metallo dorato">
+        <div class="product-top">
+          <div>
+            <div class="tag-row"><span class="tag">Orecchini</span><span class="tag">Distinzione</span></div>
+            <h3 style="margin-top:10px;">Distacco</h3>
+          </div>
+          <div class="price" style="font-size:1.15rem;">€19</div>
+        </div>
+        <p>Piccole differenze creano memorabilità. Un accessorio ben dosato distingue senza saturare e rende più nitida la firma personale.</p>
+        <div class="benefits">
+          <span class="benefit">Peso leggero</span>
+          <span class="benefit">Finitura satinata</span>
+          <span class="benefit">Essenziale</span>
+        </div>
+        <div class="product-footer">
+          <span>Unicità controllata</span>
+          <a class="btn btn-primary" href="#newsletter">Compra Distacco</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="journal">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Journal</div>
+        <h2>Un blog che prepara il desiderio senza banalizzarlo.</h2>
+      </div>
+      <p>Il contenuto editoriale aiuta il lettore a riconoscersi. Quando un articolo nomina bene un bisogno, il prodotto correlato diventa più desiderabile e più facile da ricordare.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="article-card reveal">
+        <div class="meta">
+          <div class="tag-row"><span class="tag">Longform</span><span class="tag">Identità</span></div>
+          <span>07 min</span>
+        </div>
+        <h3>Perché compri un capo che ti somiglia</h3>
+        <p>Una persona raramente acquista solo per coprirsi. Acquista per ridurre la distanza tra come si percepisce e come desidera apparire.</p>
+        <div class="article-footer">
+          <span>Riconoscimento → scelta</span>
+          <a class="btn btn-secondary" href="#newsletter">Ricevi il saggio</a>
+        </div>
+      </article>
+
+      <article class="article-card reveal">
+        <div class="meta">
+          <div class="tag-row"><span class="tag">Psicologia</span><span class="tag">Stile</span></div>
+          <span>05 min</span>
+        </div>
+        <h3>Il minimalismo comunica più di quanto sembri</h3>
+        <p>Quando il design riduce il rumore, la percezione si organizza meglio. Il capo appare più intenzionale, più controllato, più leggibile.</p>
+        <div class="article-footer">
+          <span>Meno rumore, più status</span>
+          <a class="btn btn-secondary" href="#shop">Vedi Lucidità</a>
+        </div>
+      </article>
+
+      <article class="article-card reveal">
+        <div class="meta">
+          <div class="tag-row"><span class="tag">Esperienza</span><span class="tag">Fiducia</span></div>
+          <span>03 min</span>
+        </div>
+        <h3>Perché unire blog e shop aumenta la fedeltà</h3>
+        <p>Prima valore, poi prodotto. Questa sequenza fa sentire il visitatore compreso invece che spinto, e rende il ritorno molto più naturale.</p>
+        <div class="article-footer">
+          <span>Contenuto che trattiene</span>
+          <a class="btn btn-secondary" href="#faq">Vedi FAQ</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="identity-band reveal">
+      <div>
+        <div class="eyebrow">Identità del brand</div>
+        <h2 style="max-width:14ch;">Non uno shop qualsiasi. Una filosofia che prende forma.</h2>
+        <p style="margin-top:12px;max-width:58ch;">L'obiettivo non è vendere un oggetto isolato, ma costruire una sensazione riconoscibile: ordine, densità, selezione, calma. Quando il brand diventa sensazione, cresce la fedeltà.</p>
+      </div>
+      <a class="btn btn-primary" href="#newsletter">Entra nella lista privata</a>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2>Le domande che frenano l'acquisto.</h2>
+      </div>
+      <p>Ridurre i dubbi in modo chiaro è una delle leve più forti della conversione: la persona decide meglio quando trova risposte subito.</p>
+    </div>
+
+    <div class="faq reveal">
+      <details open>
+        <summary>Come scelgo la taglia?</summary>
+        <p>Aggiungi una tabella taglie chiara con misure reali, fit consigliato e riferimento modello. Più precisione significa meno resi e più fiducia.</p>
+      </details>
+      <details>
+        <summary>Posso restituire il prodotto?</summary>
+        <p>Sì. Mantieni la policy semplice, visibile e senza linguaggio ambiguo. La chiarezza riduce l'attrito psicologico prima dell'acquisto.</p>
+      </details>
+      <details>
+        <summary>Perché blog e shop insieme?</summary>
+        <p>Perché il contenuto aiuta il lettore a riconoscersi. Quando si sente capito, compra con maggiore convinzione e torna più facilmente.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="newsletter">
+    <div class="newsletter reveal">
+      <div>
+        <div class="eyebrow">Newsletter</div>
+        <h2 style="max-width:12ch;">Una volta a settimana: un saggio, un prodotto, una scelta migliore.</h2>
+        <p style="margin-top:10px;max-width:60ch;">Ricevi idee su psicologia, identità, consumo e nuove uscite. È il ponte che trasforma una visita singola in relazione duratura.</p>
+        <p style="margin-top:10px;font-size:.88rem;">Niente spam. Solo contenuti rilevanti.</p>
+      </div>
+      <form class="form" onsubmit="event.preventDefault(); this.reset(); alert('Demo: iscrizione simulata. Collega qui Mailchimp, Brevo o ConvertKit.');">
+        <input type="email" placeholder="La tua email" aria-label="La tua email" required>
+        <button class="btn btn-primary" type="submit">Ricevi il primo saggio</button>
+      </form>
+    </div>
+  </section>
 </div>
-</section>
 
-<section id="shop" class="section">
-<h2>Prodotti</h2>
-<div class="grid grid-3">
+<footer>
+  <div class="container">
+    <div class="footer-card reveal">
+      <div>
+        <strong>INTUS</strong>
+        <p style="margin-top:8px;max-width:60ch;">Blog + shop identitario. Prodotti da indossare, idee da tenere, un'estetica da ricordare.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Inizio</a>
+        <a href="#shop">Shop</a>
+        <a href="#journal">Journal</a>
+        <a href="#newsletter">Newsletter</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
-<h3>Lucidità</h3>
-<p>Minimalismo come segnale di controllo cognitivo. Ridurre il rumore aumenta percezione di status.</p>
-<a class="btn">Compra €29</a>
-</div>
+<script>
+const progress = document.getElementById('progress');
+const updateProgress = () => {
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  progress.style.width = pct + '%';
+};
+updateProgress();
+document.addEventListener('scroll', updateProgress, { passive: true });
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<h3>Direzione</h3>
-<p>Le scarpe comunicano traiettoria e intenzione. Chi ha direzione viene percepito come competente.</p>
-<a class="btn">Compra €89</a>
-</div>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
-<h3>Distacco</h3>
-<p>Distinguersi senza eccesso aumenta memorabilità sociale e attrattività.</p>
-<a class="btn">Compra €19</a>
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="card">
-<p class="quote">Le persone non comprano prodotti. Comprano versioni di sé.</p>
-</div>
-</section>
-
-<section class="section">
-<h2>Esperienza</h2>
-<div class="card">
-<p>Pensa a cosa indossi oggi. Cosa comunica agli altri? È coerente con chi vuoi essere?</p>
-</div>
-</section>
-
-<section class="section">
-<h2>Newsletter</h2>
-<div class="card">
-<p>Ricevi idee su psicologia, identità e consumo.</p>
-<input placeholder="Email" style="padding:12px;width:60%">
-<button class="btn">Iscriviti</button>
-</div>
-</section>
-
-</div>
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
