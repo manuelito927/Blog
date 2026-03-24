@@ -1,756 +1,248 @@
 ---
+// CONFIGURAZIONE SCIENTIFICA DEI DATI
 const metadata = {
-  title: "MANUEL | Laboratory of the Mind",
-  description:
-    "Psicologia, filosofia e neuroscienza della performance in una forma chiara, forte e orientata alla trasformazione interiore."
+  title: "MANUEL ARCHIVE | Analisi Scientifica del Comportamento",
+  description: "Ricerca indipendente su neuroscienze applicate, psicologia della performance e modelli mentali per l'alto rendimento."
 };
 
-const featuredPost = {
-  category: "Neuro-Hacking",
-  title: "Riprogrammare il carattere: la scienza dietro i tuoi risultati",
-  excerpt:
-    "Non sei vittima dei tuoi automatismi. La neuroplasticità, unita a una disciplina mentale concreta, cambia il modo in cui reagisci, scegli e resisti.",
-  time: "7 min",
+const classifications = ["Neurobiologia", "Psicologia Cognitiva", "Filosofia del Comportamento"];
+
+const featuredResearch = {
+  category: "Neuroplasticità",
+  title: "Riprogrammazione Neurale: Protocolli di modifica del carattere basati su evidenze",
+  excerpt: "Un'analisi dei meccanismi sinaptici che regolano la risposta allo stress e come i processi di 'Top-Down regulation' possono essere allenati sistematicamente.",
+  time: "12 min",
+  reliability: "98%", // Fattore di autorità
+  citations: 14
 };
 
-const methodology = [
+const researchPapers = [
   {
-    title: "Chiarezza",
-    desc: "Contenuti scritti per essere compresi senza semplificare troppo."
-  },
-  {
-    title: "Profondità",
-    desc: "Psicologia e filosofia applicate alla vita reale."
-  },
-  {
-    title: "Applicazione",
-    desc: "Ogni idea è pensata per diventare comportamento concreto."
-  }
-];
-
-const primaryArticles = [
-  {
-    category: "Psicologia",
-    title: "Perché la tua mente ti mente",
-    excerpt:
-      "Bias cognitivi, interpretazioni automatiche e piccoli inganni interni che alterano il modo in cui vivi le giornate.",
-    time: "4 min read",
+    category: "Bias Cognitivi",
+    title: "L'architettura dell'errore: perché la tua mente distorce la realtà",
+    excerpt: "Analisi sistematica dei processi euristici che portano a decisioni sub-ottimali in condizioni di incertezza.",
+    time: "8 min",
+    difficulty: "Intermedio"
   },
   {
     category: "Performance",
-    title: "La regola dell’1%: piccole abitudini, enormi ritorni",
-    excerpt:
-      "La trasformazione non nasce dallo slancio iniziale, ma dal modo in cui ripeti ciò che conta quando nessuno ti guarda.",
-    time: "6 min read",
+    title: "Meccanismi di Adattamento: la scienza della costanza",
+    excerpt: "Studio sui sistemi di feedback dopaminergico e sulla loro manipolazione per sostenere lo sforzo a lungo termine.",
+    time: "10 min",
+    difficulty: "Avanzato"
   },
   {
-    category: "Filosofia",
-    title: "Accettare non significa cedere",
-    excerpt:
-      "Una mente forte non combatte tutto. Impara a distinguere ciò che può guidare da ciò che deve lasciar passare.",
-    time: "5 min read",
-  },
+    category: "Sistemi Complessi",
+    title: "Stoicismo e CBT: convergenze cliniche nella gestione del caos",
+    excerpt: "Come le antiche tecniche di distacco trovano conferma nei moderni protocolli di ristrutturazione cognitiva.",
+    time: "15 min",
+    difficulty: "Scientifico"
+  }
 ];
 
-const pillars = [
-  {
-    title: "Mente",
-    desc: "Capire il filtro con cui interpreti la realtà.",
-  },
-  {
-    title: "Carattere",
-    desc: "Allenare costanza, lucidità e direzione interiore.",
-  },
-  {
-    title: "Azione",
-    desc: "Trasformare le idee in comportamento ripetibile.",
-  },
-];
-
-const proof = [
-  "Psicologia cognitiva e filosofia applicata",
-  "Scrittura pensata per essere letta davvero",
-  "Contenuti brevi, densi e senza rumore",
-];
-
-const quotes = [
-  "La tua attenzione è la tua moneta più preziosa.",
-  "Non tutto ciò che pensi merita di guidarti.",
-  "La disciplina mentale nasce nelle scelte piccole.",
+const methodology = [
+  { title: "Peer-Reviewed", desc: "Ogni tesi è supportata da studi clinici o letteratura scientifica validata." },
+  { title: "No-Hype Policy", desc: "Assenza totale di promesse sensazionalistiche. Solo dati e protocolli applicativi." },
+  { title: "Analisi Critica", desc: "Approccio multidisciplinare che unisce biochimica, sociologia ed economia." }
 ];
 ---
 
 <html lang="it">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{metadata.title}</title>
-    <meta name="description" content={metadata.description} />
-
     <style>
-      :root {
-        --bg: #090b10;
-        --bg-soft: #11151d;
-        --surface: #151a24;
-        --surface-2: rgba(255, 255, 255, 0.04);
-        --surface-3: rgba(255, 255, 255, 0.06);
-        --text: #edf2f7;
-        --muted: #9aa8bb;
-        --muted-2: rgba(237, 242, 247, 0.56);
-        --line: rgba(255, 255, 255, 0.08);
-        --line-strong: rgba(255, 255, 255, 0.14);
-        --accent: #7f97bd;
-        --accent-2: #f0b35d;
-        --shadow: 0 24px 64px rgba(0,0,0,0.34);
-        --radius: 18px;
-        --radius-lg: 28px;
-        --font-serif: "Georgia", serif;
-        --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        -webkit-text-size-adjust: 100%;
-      }
-
-      body {
-        margin: 0;
-        background:
-          radial-gradient(circle at top, rgba(127,151,189,0.10), transparent 24%),
-          linear-gradient(180deg, #090b10 0%, #0d1118 40%, #090b10 100%);
-        color: var(--text);
-        font-family: var(--font-sans);
-        line-height: 1.72;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 2px;
-        z-index: 999;
-        background: linear-gradient(90deg, var(--accent), var(--accent-2));
-        box-shadow: 0 0 12px rgba(127,151,189,0.35);
-      }
-
-      .container {
-        width: min(1120px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 16px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .logo {
-        font-size: 0.82rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        font-weight: 700;
-        white-space: nowrap;
-      }
-
-      .logo span {
-        color: var(--accent);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        font-size: 0.7rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .nav-links a:hover {
-        color: var(--text);
-      }
-
-      .hero {
-        padding: 54px 0 34px;
-      }
-
-      .edition {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--accent);
-        font-size: 0.72rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        margin-bottom: 14px;
-      }
-
-      .edition::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 10px rgba(127,151,189,0.35);
-      }
-
-      .hero-kicker {
-        color: var(--muted);
-        font-size: 0.92rem;
-        margin-bottom: 10px;
-      }
-
-      h1 {
-        margin: 0 0 16px;
-        font-family: var(--font-serif);
-        font-size: clamp(2.25rem, 8vw, 4.8rem);
-        line-height: 0.98;
-        font-weight: 400;
-        letter-spacing: -0.04em;
-        max-width: 11ch;
-      }
-
-      .hero-desc {
-        max-width: 34rem;
-        color: var(--muted);
-        font-size: 1rem;
-        line-height: 1.8;
-        margin: 0;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 13px 16px;
-        border-radius: 14px;
-        border: 1px solid var(--line);
-        font-size: 0.82rem;
-        letter-spacing: 0.04em;
-        transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #0b0d12;
-        font-weight: 700;
-      }
-
-      .btn-secondary {
-        background: var(--surface-2);
-        color: var(--text);
-      }
-
-      .btn-primary:hover,
-      .btn-secondary:hover {
-        transform: translateY(-2px);
-      }
-
-      .hero-note {
-        margin-top: 18px;
-        color: var(--muted-2);
-        font-size: 0.82rem;
-      }
-
-      .proof-strip {
-        padding: 8px 0 22px;
-      }
-
-      .proof-grid {
-        display: grid;
-        gap: 10px;
-      }
-
-      .proof-item {
-        padding: 14px 16px;
-        border-radius: 14px;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-        color: var(--muted);
-        font-size: 0.88rem;
-        line-height: 1.6;
-      }
-
-      .main-grid {
-        display: grid;
-        gap: 26px;
-        margin: 18px 0 42px;
-      }
-
-      .feature-shell {
-        display: grid;
-        gap: 18px;
-      }
-
-      .featured-card {
-        display: block;
-        padding: 22px;
-        border-radius: var(--radius-lg);
-        border: 1px solid var(--line);
-        background:
-          linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-        box-shadow: var(--shadow);
-      }
-
-      .featured-card:hover h2 {
-        color: var(--accent);
-      }
-
-      .meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 12px;
-        color: var(--muted);
-        font-size: 0.72rem;
-        margin-bottom: 12px;
-      }
-
-      .meta span {
-        position: relative;
-      }
-
-      .meta span:not(:first-child)::before {
-        content: "•";
-        margin-right: 8px;
-        color: var(--muted-2);
-      }
-
-      h2 {
-        margin: 0 0 12px;
-        font-family: var(--font-serif);
-        font-size: 1.9rem;
-        line-height: 1.08;
-        font-weight: 400;
-        letter-spacing: -0.03em;
-        max-width: 16ch;
-      }
-
-      .excerpt {
-        margin: 0 0 16px;
-        color: var(--muted);
-        font-size: 0.98rem;
-        line-height: 1.8;
-        max-width: 60ch;
-      }
-
-      .featured-cta {
-        color: var(--accent-2);
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-      }
-
-      .quote-band {
-        padding: 8px 0 8px;
-      }
-
-      .quote-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .quote {
-        padding: 14px 16px;
-        border-radius: 14px;
-        background: rgba(127,151,189,0.10);
-        border: 1px solid var(--line);
-        font-size: 0.9rem;
-        line-height: 1.65;
-        color: var(--text);
-      }
-
-      .article-list {
-        display: grid;
-        gap: 16px;
-      }
-
-      .small-card {
-        display: block;
-        padding: 18px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .small-card:last-child {
-        border-bottom: none;
-      }
-
-      .small-card h4 {
-        margin: 8px 0 10px;
-        font-family: var(--font-serif);
-        font-size: 1.28rem;
-        line-height: 1.18;
-        font-weight: 400;
-        transition: color 0.28s ease;
-      }
-
-      .small-card:hover h4 {
-        color: var(--accent);
-      }
-
-      .small-card .excerpt {
-        font-size: 0.92rem;
-        margin-bottom: 0;
-      }
-
-      .side-grid {
-        display: grid;
-        gap: 14px;
-      }
-
-      .sidebar-section {
-        padding: 18px;
-        border-radius: var(--radius);
-        background: var(--surface);
-        border: 1px solid var(--line);
-      }
-
-      .sidebar-section h3 {
-        margin: 0 0 12px;
-        color: var(--accent);
-        font-size: 0.74rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-      }
-
-      .sidebar-item {
-        margin-bottom: 16px;
-      }
-
-      .sidebar-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .sidebar-item strong {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 0.95rem;
-        color: var(--text);
-      }
-
-      .sidebar-item p,
-      .sidebar-text {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.88rem;
-        line-height: 1.7;
-      }
-
-      .pillars {
-        padding: 8px 0 38px;
-      }
-
-      .pillars-head {
-        margin-bottom: 16px;
-      }
-
-      .pillars-head small {
-        color: var(--muted-2);
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-size: 0.72rem;
-      }
-
-      .pillars-head h3 {
-        margin: 10px 0 0;
-        font-family: var(--font-serif);
-        font-size: 1.6rem;
-        font-weight: 400;
-        line-height: 1.1;
-      }
-
-      .pillars-grid {
-        display: grid;
-        gap: 12px;
-      }
-
-      .pillar {
-        padding: 18px;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .pillar strong {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--text);
-        font-size: 1rem;
-      }
-
-      .pillar p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.9rem;
-        line-height: 1.65;
-      }
-
-      footer {
-        padding: 36px 0 26px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 0.78rem;
-      }
-
-      .footer-inner {
-        display: grid;
-        gap: 14px;
-      }
-
-      .footer-links {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .footer-links a {
-        text-decoration: none;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition: 0.8s all ease;
-      }
-
-      .reveal.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (min-width: 760px) {
-        .container {
-          width: min(1120px, calc(100% - 48px));
+        :root {
+            /* Palette Scientifica: Deep Professionalism */
+            --bg: #0c0d10;
+            --surface: #16181d;
+            --accent: #5e81ac; /* Blu Accademico: ispira fiducia e stabilità */
+            --accent-gold: #b48ead; /* Muted Gold per elementi di valore */
+            --text-main: #e5e9f0;
+            --text-muted: #818996;
+            --border: rgba(255, 255, 255, 0.05);
+            --font-authoritative: 'Spectral', serif; /* Font per titoli: serio, editoriale */
+            --font-clean: 'Inter', system-ui, sans-serif; /* Font per lettura: alta leggibilità */
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Spectral:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-clean);
+            line-height: 1.8; /* Ottimale per la lettura prolungata */
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Barra di Progresso Neuro-Stimolante */
+        #reading-progress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-gold));
+            z-index: 1000; width: 0%; transition: width 0.2s;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+
+        /* Navigation: Institutional Style */
         nav {
-          padding: 20px 0;
+            padding: 2rem 0;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 30px; font-size: 0.75rem; letter-spacing: 1px; color: var(--text-muted); }
+
+        /* Hero: The Authority Statement */
+        .hero { padding: 100px 0 60px; text-align: left; max-width: 900px; }
+        .hero-label { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        h1 { 
+            font-family: var(--font-authoritative);
+            font-size: clamp(2.5rem, 6vw, 4.2rem); 
+            line-height: 1.1; margin-bottom: 30px; font-weight: 400;
+        }
+        .hero-desc { color: var(--text-muted); font-size: 1.2rem; line-height: 1.6; border-left: 2px solid var(--accent); padding-left: 30px; }
+
+        /* Grid System: High-End Editorial */
+        .main-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; margin-top: 60px; }
+
+        /* Featured Analysis */
+        .featured-research { 
+            background: var(--surface); 
+            padding: 40px; border-radius: 4px; border: 1px solid var(--border);
+            text-decoration: none; color: inherit; display: block;
+            transition: all 0.4s ease;
+        }
+        .featured-research:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .meta-data { display: flex; gap: 20px; font-size: 0.7rem; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; font-weight: 700; }
+        h2 { font-family: var(--font-authoritative); font-size: 2.2rem; margin-bottom: 20px; font-weight: 400; }
+
+        /* Research List */
+        .papers-list { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; }
+        .paper-card { text-decoration: none; color: inherit; padding-bottom: 30px; border-bottom: 1px solid var(--border); transition: 0.3s; }
+        .paper-card:hover h3 { color: var(--accent); }
+        h3 { font-family: var(--font-authoritative); font-size: 1.6rem; margin: 15px 0; font-weight: 400; }
+
+        /* Sidebar: Social Proof & Methodology */
+        .sidebar-box { background: #1a1c23; padding: 30px; border-radius: 4px; margin-bottom: 30px; border: 1px solid var(--border); }
+        .sidebar-box h4 { text-transform: uppercase; font-size: 0.75rem; color: var(--accent); margin-top: 0; letter-spacing: 2px; }
+        .method-item { margin-bottom: 20px; }
+        .method-item strong { display: block; font-size: 0.9rem; margin-bottom: 5px; }
+        .method-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+        /* Typography for Reading Pleasure */
+        .excerpt { font-size: 1.05rem; color: var(--text-muted); max-width: 65ch; }
+
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .hero { padding: 60px 0; }
         }
 
-        .nav-links {
-          gap: 20px;
-          font-size: 0.76rem;
-        }
-
-        .hero {
-          padding: 74px 0 44px;
-        }
-
-        .proof-grid,
-        .quote-list,
-        .pillars-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .main-grid {
-          grid-template-columns: 2fr 1fr;
-          gap: 42px;
-        }
-
-        .article-list {
-          grid-template-columns: 1fr 1fr;
-          gap: 30px;
-        }
-
-        .small-card {
-          padding: 0;
-          border-bottom: none;
-        }
-
-        .footer-inner {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 20px;
-          flex-wrap: wrap;
-        }
-      }
-
-      @media (min-width: 1024px) {
-        .container {
-          width: min(1180px, calc(100% - 80px));
-        }
-
-        .hero {
-          padding: 102px 0 56px;
-        }
-
-        h1 {
-          max-width: 10ch;
-        }
-
-        .main-grid {
-          gap: 60px;
-          margin: 34px 0 56px;
-        }
-
-        .featured-card {
-          padding: 28px;
-        }
-
-        h2 {
-          font-size: 2.3rem;
-        }
-      }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <div class="progress-bar" id="pb"></div>
+    <div id="reading-progress"></div>
 
     <div class="container">
         <nav>
-            <div class="logo">MANUEL <span>/</span> BRAIN LAB</div>
+            <div class="logo">MANUEL <span>/</span> LABORATORY</div>
             <div class="nav-links">
-                <a href="#articles">Articoli</a>
-                <a href="#method">Approccio</a>
-                <a href="#pillars">Pilasti</a>
-                <a href="#about">Info</a>
+                <span>INDEX_2026</span>
+                <span>ARCHIVE</span>
+                <span>METHODOLOGY</span>
             </div>
         </nav>
 
         <header class="hero reveal">
-            <div class="edition">Edizione 2026</div>
-            <div class="hero-kicker">Oltre la psicologia</div>
-            <h1>Costruisci una mente più lucida, stabile e difficile da disturbare.</h1>
+            <span class="hero-label">Pubblicazione Indipendente</span>
+            <h1>Analisi tecnica dei processi mentali e della performance umana.</h1>
             <p class="hero-desc">
-                Psicologia, filosofia e neuroscienza della performance in una forma più leggibile,
-                più concreta e più viva. Non per riempirti di teoria, ma per aiutarti a capire meglio
-                cosa guida davvero il tuo carattere, le tue scelte e la tua attenzione.
+                Benvenuto in uno spazio di rigore metodologico. Qui la psicologia e le neuroscienze non sono "consigli", ma strumenti di ingegneria del carattere.
             </p>
-            <div class="hero-actions">
-                <a href="#articles" class="btn-primary">Inizia da qui →</a>
-                <a href="#pillars" class="btn-secondary">Scopri il metodo</a>
-            </div>
-            <div class="hero-note">La tua attenzione è la tua moneta più preziosa.</div>
         </header>
 
-        <section class="proof-strip reveal">
-            <div class="proof-grid">
-                {proof.map((item) => (
-                    <div class="proof-item">{item}</div>
-                ))}
-            </div>
-        </section>
-
-        <main class="main-grid">
-            <section class="feature-shell" id="articles">
-                <a href="#" class="featured-card reveal">
-                    <div class="meta">
-                        <span>{featuredPost.category}</span>
-                        <span>{featuredPost.time}</span>
+        <main class="main-layout">
+            <section>
+                <a href="#" class="featured-research reveal">
+                    <div class="meta-data">
+                        <span>{featuredResearch.category}</span>
+                        <span>•</span>
+                        <span>{featuredResearch.time} di lettura</span>
+                        <span>•</span>
+                        <span>{featuredResearch.citations} Citazioni bibliografiche</span>
                     </div>
-                    <h2>{featuredPost.title}</h2>
-                    <p class="excerpt">{featuredPost.excerpt}</p>
-                    <div class="featured-cta">LEGGI ORA →</div>
+                    <h2>{featuredResearch.title}</h2>
+                    <p class="excerpt">{featuredResearch.excerpt}</p>
+                    <div style="margin-top: 30px; font-weight: bold; font-size: 0.8rem; letter-spacing: 2px;">ACCEDI ALL'ANALISI COMPLETA →</div>
                 </a>
 
-                <section class="quote-band reveal">
-                    <div class="quote-list">
-                        {quotes.map((quote) => (
-                            <div class="quote">“{quote}”</div>
-                        ))}
-                    </div>
-                </section>
-
-                <div class="article-list">
-                    {primaryArticles.map(post => (
-                        <a href="#" class="small-card reveal">
-                            <div class="meta">
-                                <span>{post.category}</span>
-                                <span>{post.time}</span>
+                <div class="papers-list">
+                    {researchPapers.map(paper => (
+                        <a href="#" class="paper-card reveal">
+                            <div class="meta-data" style="margin-bottom: 10px;">
+                                <span>{paper.category}</span>
+                                <span style="color: var(--text-muted)">LVL: {paper.difficulty}</span>
                             </div>
-                            <h4>{post.title}</h4>
-                            <p class="excerpt">{post.excerpt}</p>
+                            <h3>{paper.title}</h3>
+                            <p class="excerpt" style="font-size: 0.95rem;">{paper.excerpt}</p>
                         </a>
                     ))}
                 </div>
             </section>
 
-            <aside class="side-grid" id="method">
-                <div class="sidebar-section reveal">
-                    <h3>Approccio</h3>
+            <aside>
+                <div class="sidebar-box reveal">
+                    <h4>Metodologia di Ricerca</h4>
                     {methodology.map(m => (
-                        <div class="sidebar-item">
+                        <div class="method-item">
                             <strong>{m.title}</strong>
                             <p>{m.desc}</p>
                         </div>
                     ))}
                 </div>
 
-                <div class="sidebar-section reveal">
-                    <h3>Come leggere</h3>
-                    <p class="sidebar-text">
-                        Alcuni articoli entrano subito nel punto. Altri richiedono più attenzione.
-                        L’idea non è scorrere veloce, ma uscire con una comprensione più pulita.
+                <div class="sidebar-box reveal" style="background: linear-gradient(135deg, #16181d 0%, #1e222a 100%);">
+                    <h4>Status del Laboratorio</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">
+                        Stiamo attualmente analizzando dati sulla <strong>ritenzione mnemonica a lungo termine</strong>. I nuovi rapporti vengono pubblicati ogni martedì alle 09:00.
                     </p>
+                    <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                        <span style="width: 8px; height: 8px; background: #a3be8c; border-radius: 50%; display: inline-block;"></span>
+                        <span style="font-size: 0.7rem; font-weight: bold;">LIVE: AGGIORNAMENTO ARCHIVIO</span>
+                    </div>
                 </div>
             </aside>
         </main>
 
-        <section class="pillars" id="pillars">
-            <div class="pillars-head reveal">
-                <small>Tre direzioni</small>
-                <h3>Il lavoro interiore parte sempre da qui.</h3>
-            </div>
-
-            <div class="pillars-grid">
-                {pillars.map((pillar) => (
-                    <div class="pillar reveal">
-                        <strong>{pillar.title}</strong>
-                        <p>{pillar.desc}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <footer id="about">
-            <div class="footer-inner">
-                <div>© 2026 Manuel Brain Lab. Uno spazio editoriale su mente, presenza e disciplina interiore.</div>
-                <div class="footer-links">
-                    <a href="#">RSS Feed</a>
-                    <a href="#">Privacy Policy</a>
-                </div>
-            </div>
+        <footer style="padding: 100px 0 40px; text-align: center; border-top: 1px solid var(--border); margin-top: 100px;">
+            <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px;">
+                © 2026 MANUEL LABORATORY - ANALISI BASATE SU EVIDENZE SCIENTIFICHE
+            </p>
         </footer>
     </div>
 
     <script>
+        // Progress Bar Logic
         window.onscroll = () => {
-            const scroll = document.documentElement.scrollTop;
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("pb").style.width = (scroll / height) * 100 + "%";
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("reading-progress").style.width = scrolled + "%";
         };
 
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) e.target.classList.add('show');
+        // Scroll Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
