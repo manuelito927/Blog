@@ -1,240 +1,183 @@
-<!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARCHETYPE | Neuro-Engineering & Positive Philosophy</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;900&display=swap" rel="stylesheet">
+---
+const metadata = {
+  title: "MANUEL ARCHIVE | Neuroscienze e Comportamento",
+  description: "Ricerca indipendente su biologia del carattere e modelli mentali per l'alto rendimento."
+};
 
+const articles = [
+  {
+    cat: "NEUROBIOLOGIA",
+    title: "La Chimica della Disciplina: Oltre la Forza di Volontà",
+    desc: "Analisi dei circuiti dopaminergici e del ruolo della corteccia prefrontale nella gestione dello sforzo.",
+    time: "10 min",
+    level: "Technical"
+  },
+  {
+    cat: "PSICOLOGIA",
+    title: "Bias Cognitivi: L'architettura del tuo auto-inganno",
+    desc: "Come il cervello distorce la realtà per risparmiare energia e come resettare i filtri percettivi.",
+    time: "8 min",
+    level: "Scientific"
+  }
+];
+---
+
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>{metadata.title}</title>
     <style>
         :root {
-            --obsidian: #020202;
-            --gold-leaf: #af944d;
-            --neural-gray: #1a1a1a;
-            --fluid-type: clamp(1rem, 2vw, 1.5rem);
+            --bg: #050608;
+            --surface: #0f1115;
+            --accent: #7d9bbd; /* Blu Ardesia - Autorità */
+            --text-p: #e2e8f0;
+            --text-s: #818996;
+            --border: rgba(255,255,255,0.06);
+            --font-serif: 'Spectral', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
         }
 
-        body {
-            background-color: var(--obsidian);
-            color: #ffffff;
-            font-family: 'Montserrat', sans-serif;
-            cursor: crosshair; /* Neuro-attentional trigger: cambia la percezione dell'interazione */
+        /* RESET & BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: var(--bg); 
+            color: var(--text-p); 
+            font-family: var(--font-sans); 
+            line-height: 1.6;
             overflow-x: hidden;
+            opacity: 0; /* Nascondiamo tutto finché non è pronto */
+            transition: opacity 0.8s ease;
         }
+        body.loaded { opacity: 1; }
 
-        .serif-display { font-family: 'Cinzel', serif; }
-
-        /* Effetto di Depth Perception (Psicologia della Gestalt) */
-        .layer-blur {
-            backdrop-filter: blur(20px);
-            background: rgba(2, 2, 2, 0.8);
-        }
-
-        /* Scarsità Visiva: Solo un elemento alla volta domina */
-        .focus-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        /* Custom Scrollbar per non interrompere il flow */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--obsidian); }
-        ::-webkit-scrollbar-thumb { background: var(--gold-leaf); }
-
-        /* Animazione Carico Cognitivo (Dopamine Loop) */
+        /* PRE-LOADER (Corretto) */
         #loader {
-            position: fixed;
-            inset: 0;
-            z-index: 999;
-            background: var(--obsidian);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            position: fixed; inset: 0; background: var(--bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s;
         }
+        .spinner {
+            width: 40px; height: 40px; border: 2px solid var(--border);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: spin 1s linear infinite; margin-bottom: 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* LAYOUT */
+        .container { width: min(1100px, 100% - 40px); margin: 0 auto; }
+        
+        nav { 
+            padding: 30px 0; display: flex; justify-content: space-between; 
+            border-bottom: 1px solid var(--border); font-size: 0.75rem; letter-spacing: 2px;
+        }
+        .logo { font-weight: 800; color: var(--accent); }
 
-        .neuro-pulse {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--gold-leaf);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+        /* HERO - Psicologia dell'Impatto */
+        .hero { padding: 80px 0 40px; text-align: left; }
+        h1 { 
+            font-family: var(--font-serif); font-size: clamp(2.2rem, 8vw, 4rem); 
+            line-height: 1.1; margin-bottom: 25px; font-weight: 400;
         }
+        .hero p { color: var(--text-s); font-size: 1.2rem; max-width: 650px; border-left: 2px solid var(--accent); padding-left: 20px; }
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+        /* MAIN CONTENT */
+        .main-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; }
+        @media (min-width: 1024px) { .main-grid { grid-template-columns: 2fr 1fr; } }
+
+        /* CARDS */
+        .card { 
+            background: var(--surface); padding: 30px; border-radius: 4px; 
+            border: 1px solid var(--border); text-decoration: none; color: inherit;
+            display: block; transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            margin-bottom: 20px;
         }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .tag { font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
+        .card h2 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 15px; font-weight: 400; }
+        .card p { color: var(--text-s); font-size: 0.95rem; }
+
+        /* SIDEBAR */
+        .sidebar-box { padding: 25px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); margin-bottom: 20px; }
+        .sidebar-box h4 { font-size: 0.7rem; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; margin-bottom: 15px; }
+        .sidebar-box p { font-size: 0.85rem; color: var(--text-s); }
+
+        /* PROGRESS BAR */
+        #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 10000; width: 0%; }
+
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <div id="progress"></div>
+
     <div id="loader">
-        <div class="neuro-pulse"></div>
-        <p class="mt-8 text-[10px] tracking-[0.5em] text-gray-500 uppercase italic">Calibrazione Sinaptica in corso...</p>
+        <div class="spinner"></div>
+        <div id="loader-text" style="font-size: 0.7rem; letter-spacing: 2px; color: var(--text-s);">CALIBRAZIONE SINAPTICA...</div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 p-8 flex justify-between items-center mix-blend-difference">
-        <div class="text-xl font-bold tracking-[0.3em] serif-display">ARCHETYPE <span class="text-[8px] align-top">©</span></div>
-        <div class="flex gap-10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 transition">
-            <a href="#lab" class="hover:text-[#af944d]">Protocolli</a>
-            <a href="#logic" class="hover:text-[#af944d]">Logica</a>
-            <a href="#join" class="border border-white/20 px-4 py-2 rounded-full">Membership</a>
-        </div>
-    </nav>
+    <div class="container">
+        <nav>
+            <div class="logo">MANUEL // ARCHIVE</div>
+            <div style="color: var(--text-s);">VOL. 2026</div>
+        </nav>
 
-    <section class="relative h-screen flex flex-col justify-center px-10 md:px-32 overflow-hidden">
-        <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#af944d" d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87.1,-15.7,85.8,-0.7C84.6,14.2,78.7,28.5,70.1,41.1C61.5,53.7,50.2,64.7,36.8,71.5C23.4,78.3,8,80.9,-6.9,79.7C-21.8,78.5,-36.2,73.5,-48.9,65.1C-61.6,56.7,-72.6,44.9,-78.7,31.2C-84.8,17.5,-86.1,1.9,-83.4,-12.9C-80.7,-27.7,-74,-41.7,-64,-53.4C-54,-65.1,-40.7,-74.5,-26.6,-78.9C-12.5,-83.3,2.4,-82.7,18.1,-80.1C33.8,-77.5,44.7,-76.4,44.7,-76.4Z" transform="translate(100 100)" />
-            </svg>
-        </div>
+        <header class="hero">
+            <h1>Ingegneria della mente e del carattere.</h1>
+            <p>Protocolli tecnici basati su evidenze scientifiche. Nessuna motivazione, solo analisi dei processi bio-comportamentali.</p>
+        </header>
 
-        <div class="z-10">
-            <h2 class="text-[#af944d] text-xs font-bold uppercase tracking-[0.8em] mb-6">Evidence-Based Excellence</h2>
-            <h1 class="text-6xl md:text-8xl serif-display leading-none mb-10">
-                L'Ingegneria <br> <span class="italic text-gray-500">del Domani</span> <br> Inizia Oggi.
-            </h1>
-            <p class="max-w-xl text-gray-400 text-sm leading-loose mb-12 border-l-2 border-[#af944d] pl-6">
-                Applichiamo il 100% degli studi sulla <strong>Plasticità Neuronale</strong> e sulla <strong>Teoria dei Nudge</strong> per ottimizzare la tua traiettoria biologica. La filosofia non è più astrazione: è un protocollo biochimico.
-            </p>
-            <button class="bg-[#af944d] text-black px-12 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all transform hover:scale-105">
-                Inizia l'Audit Biometrico
-            </button>
-        </div>
-    </section>
+        <main class="main-grid">
+            <section>
+                {articles.map(post => (
+                    <a href="#" class="card">
+                        <span class="tag">{post.cat} • {post.time} • {post.level}</span>
+                        <h2>{post.title}</h2>
+                        <p>{post.desc}</p>
+                    </a>
+                ))}
+            </section>
 
-    <section id="lab" class="focus-section py-20 px-10 md:px-32 bg-[#050505]">
-        <div class="grid md:grid-cols-2 gap-20">
-            <div class="space-y-12">
-                <h3 class="text-4xl serif-display">Dati, non dogmi.</h3>
-                <div class="space-y-8">
-                    <div class="group">
-                        <span class="text-[10px] text-[#af944d] font-bold uppercase tracking-widest">01 / Biologia della Resilienza</span>
-                        <p class="text-gray-500 mt-2 text-sm leading-relaxed">Come il nervo vago influenza il tuo processo decisionale economico (Porges, 2011). Analisi dei biomarcatori dello stress.</p>
-                    </div>
-                    <div class="group">
-                        <span class="text-[10px] text-[#af944d] font-bold uppercase tracking-widest">02 / Psicologia Positiva Applicata</span>
-                        <p class="text-gray-500 mt-2 text-sm leading-relaxed">Framework PERMA-V per la massimizzazione del capitale umano in contesti di alta pressione.</p>
-                    </div>
+            <aside>
+                <div class="sidebar-box">
+                    <h4>Metodologia</h4>
+                    <p>Ogni paper citato è verificato tramite database peer-reviewed (PubMed/Nature). L'obiettivo è la precisione del dato, non la velocità di lettura.</p>
                 </div>
-            </div>
-            <div class="relative flex items-center justify-center">
-                <div class="w-full h-[400px] border border-white/10 rounded-2xl flex items-center justify-center p-10 overflow-hidden group">
-                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#af944d]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
-                    <p class="text-center italic text-gray-400 serif-display text-xl">"La mente è l'unico limite della biologia."</p>
+                <div class="sidebar-box" style="border-left: 2px solid var(--accent);">
+                    <h4>Prossimo Rilascio</h4>
+                    <p>Analisi della plasticità sinaptica indotta dal sonno profondo. [In Revisione]</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="logic" class="py-32 bg-white text-black text-center">
-        <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-sm font-black uppercase tracking-[0.5em] mb-12">Assessment Cognitivo</h2>
-            <div id="quiz-box" class="p-10 border-2 border-black/5 rounded-3xl transition-all duration-500">
-                <p class="text-2xl serif-display mb-10">Qual è il tuo livello attuale di entropia mentale?</p>
-                <div class="flex flex-col gap-4">
-                    <button onclick="nextStep()" class="border border-black py-4 hover:bg-black hover:text-white transition uppercase text-[10px] font-bold tracking-widest">Calcola Baseline</button>
-                    <span class="text-[8px] text-gray-400 mt-4 uppercase tracking-widest italic">Tempo stimato: 45 secondi. Validità scientifica: 98.4%</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="join" class="py-32 px-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
-            <div class="max-w-xl">
-                <h4 class="text-5xl serif-display mb-8 italic">Entra nel Cerchio.</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Non inviamo newsletter. Distribuiamo <strong>Protocolli di Eccellenza</strong>. Una volta al mese, direttamente nella tua corteccia prefrontale (via email).</p>
-                <div class="mt-10 flex gap-4">
-                    <input type="email" placeholder="Accesso ID Email" class="bg-transparent border-b border-white/20 py-4 w-full focus:outline-none focus:border-[#af944d] text-sm">
-                    <button class="bg-white text-black px-10 font-bold uppercase text-[10px] tracking-tighter">Sincronizza</button>
-                </div>
-            </div>
-            <div class="text-[10px] text-gray-700 tracking-[0.4em] uppercase font-bold text-right">
-                Neuro-Marketing <br> Behavioral Economics <br> Cognitive Design <br> 2026 Archive
-            </div>
-        </div>
-    </footer>
+            </aside>
+        </main>
+    </div>
 
     <script>
-        // Registrazione Plugin GSAP
-        gsap.registerPlugin(ScrollTrigger);
-
-        // LOADER Logic (Dopamine Release Delay)
+        // 1. GESTIONE CARICAMENTO (Per evitare il blocco del video/immagine che hai mandato)
         window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            // Diamo un senso di "calibrazione reale" con un piccolo delay
             setTimeout(() => {
-                gsap.to("#loader", { 
-                    opacity: 0, 
-                    duration: 1.5, 
-                    ease: "power4.inOut",
-                    onComplete: () => {
-                        document.getElementById('loader').style.display = 'none';
-                        initAnimations();
-                    }
-                });
-            }, 2000); // Ritardo calcolato per creare aspettativa
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                document.body.classList.add('loaded');
+            }, 1500); 
         });
 
-        function initAnimations() {
-            // Animazione Entrata Hero
-            gsap.from("h1", { opacity: 0, x: -100, duration: 1.5, ease: "power4.out" });
-            gsap.from("p", { opacity: 0, y: 50, duration: 1.5, delay: 0.5, ease: "power4.out" });
+        // 2. BARRA DI PROGRESSO (Piacere visivo allo scrolling)
+        window.onscroll = () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress").style.width = scrolled + "%";
+        };
 
-            // Reveal Sections on Scroll (Psicologia della scoperta)
-            gsap.utils.toArray('.focus-section').forEach(section => {
-                gsap.to(section, {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                    },
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: "power2.out"
-                });
-            });
-        }
-
-        // QUIZ Logic (Sunk Cost Fallacy)
-        function nextStep() {
-            const box = document.getElementById('quiz-box');
-            box.style.opacity = '0';
-            setTimeout(() => {
-                box.innerHTML = `
-                    <h3 class="text-xl font-bold italic mb-6">Analisi Neuro-Trasmettitori in corso...</h3>
-                    <div class="w-full bg-gray-100 h-1 mb-8">
-                        <div id="bar" class="bg-[#af944d] h-1 w-0 transition-all duration-[3000ms]"></div>
-                    </div>
-                    <p class="text-sm text-gray-500 uppercase tracking-widest">Stiamo incrociando i tuoi dati con il database di Kahneman...</p>
-                `;
-                box.style.opacity = '1';
-                setTimeout(() => {
-                    document.getElementById('bar').style.width = '100%';
-                    setTimeout(() => {
-                        box.innerHTML = `
-                            <h3 class="text-3xl serif-display mb-4">Profilo: "Ottimizzatore Latente"</h3>
-                            <p class="mb-8 text-gray-600">Il tuo cervello mostra un'alta resistenza al bias di conferma, ma soffre di fatica decisionale cronica.</p>
-                            <button onclick="location.href='#join'" class="bg-black text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest">Scarica il tuo Report (PDF)</button>
-                        `;
-                    }, 3200);
-                }, 100);
-            }, 500);
-        }
-
-        // BIOMETRIC HOVER (Propriocezione Digitale)
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            gsap.to(".serif-display", { x: moveX, y: moveY, duration: 1 });
-        });
+        // Fallback: se il loader non sparisce dopo 4 secondi, forzalo (Safety first)
+        setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+            document.body.classList.add('loaded');
+        }, 4000);
     </script>
 </body>
 </html>
