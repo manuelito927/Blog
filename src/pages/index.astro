@@ -1,265 +1,957 @@
 ---
-// ARCHITETTURA DATI: RIGORE E AUTORITÀ
 const metadata = {
-  title: "MANUEL ARCHIVE | Neuroscienze e Comportamento",
-  description: "Ricerca indipendente su performance, biologia del carattere e modelli mentali."
+  title: "MANUEL | Psicologia, filosofia e neuroscienza applicata",
+  description:
+    "Un blog editoriale su mente, carattere, attenzione e trasformazione interiore. Psicologia, filosofia e neuroscienza spiegate con chiarezza, profondità e applicazione reale."
 };
 
-const featured = {
-  label: "RESEARCH_PAPER #01",
-  title: "La Biologia della Resilienza: Meccanismi di Regolazione Top-Down",
-  excerpt: "Perché alcuni sistemi nervosi collassano sotto stress mentre altri si potenziano? Analisi dei circuiti della corteccia prefrontale.",
-  readTime: "12 MIN",
-  citations: 18,
-  level: "AVANZATO"
+const featuredPost = {
+  category: "Articolo in evidenza",
+  title: "Riprogrammare il carattere: la scienza dietro i risultati che ottieni",
+  excerpt:
+    "Il carattere non è una condanna immobile. È un insieme di automatismi, interpretazioni e risposte che possono essere allenate. Qui entra in gioco la neuroplasticità: non come slogan, ma come struttura concreta del cambiamento.",
+  time: "7 min di lettura",
+  link: "#"
 };
 
-const articles = [
+const primaryArticles = [
   {
-    category: "PSICOLOGIA COGNITIVA",
-    title: "Bias di Conferma e Dissonanza: L'architettura dell'inganno",
-    time: "8 MIN",
-    preview: "Come il cervello filtra la realtà per proteggere l'identità a discapito della verità."
+    category: "Psicologia cognitiva",
+    title: "Perché la tua mente ti mente",
+    excerpt:
+      "Bias, distorsioni e automatismi mentali che alterano il modo in cui leggi il mondo, gli altri e te stesso.",
+    time: "4 min",
+    link: "#"
   },
   {
-    category: "NEUROCHIMICA",
-    title: "Dopamina e Sforzo: Il costo biologico della disciplina",
-    time: "10 MIN",
-    preview: "Analisi dei recettori D2 e della loro influenza sulla perseveranza nel lungo periodo."
+    category: "Abitudini e performance",
+    title: "La regola dell’1%: come si costruisce una trasformazione vera",
+    excerpt:
+      "Il cambiamento duraturo raramente nasce da un picco emotivo. Nasce da strutture piccole, ripetute e difficili da negoziare.",
+    time: "6 min",
+    link: "#"
   },
   {
-    category: "FILOSOFIA",
-    title: "Logos e Prassi: La razionalità applicata al caos",
-    time: "7 MIN",
-    preview: "Dall'antico stoicismo alle moderne terapie comportamentali: un ponte necessario."
+    category: "Filosofia applicata",
+    title: "Accettare non significa cedere",
+    excerpt:
+      "Accettare la realtà non vuol dire arrendersi. Vuol dire smettere di sprecare energia contro ciò che non puoi controllare.",
+    time: "5 min",
+    link: "#"
+  },
+  {
+    category: "Neuroscienza",
+    title: "Attenzione: la vera risorsa che decide la qualità della tua vita",
+    excerpt:
+      "Ciò che alleni a notare diventa il materiale con cui costruisci identità, emozioni e comportamento.",
+    time: "5 min",
+    link: "#"
+  }
+];
+
+const pillars = [
+  {
+    title: "Mente",
+    desc: "Capire i filtri cognitivi con cui interpreti la realtà."
+  },
+  {
+    title: "Carattere",
+    desc: "Allenare stabilità, disciplina interiore e coerenza nel tempo."
+  },
+  {
+    title: "Azione",
+    desc: "Tradurre idee complesse in comportamento concreto e ripetibile."
+  }
+];
+
+const principles = [
+  "Psicologia, filosofia e neuroscienza senza rumore inutile",
+  "Scrittura pensata per essere letta davvero, non solo scorsa",
+  "Contenuti chiari, profondi e orientati alla trasformazione reale"
+];
+
+const categories = [
+  "Psicologia",
+  "Neuroscienza",
+  "Filosofia",
+  "Abitudini",
+  "Carattere",
+  "Attenzione"
+];
+
+const readerPath = [
+  {
+    step: "01",
+    title: "Capisci",
+    desc: "Leggi il meccanismo che guida pensieri, emozioni e comportamento."
+  },
+  {
+    step: "02",
+    title: "Riconosci",
+    desc: "Individua come quel meccanismo si manifesta dentro la tua vita."
+  },
+  {
+    step: "03",
+    title: "Applica",
+    desc: "Trasforma l’idea in una pratica mentale o comportamentale concreta."
   }
 ];
 ---
 
 <html lang="it">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{metadata.title}</title>
+    <meta name="description" content={metadata.description} />
+
     <style>
-        :root {
-            /* Palette Scientifica (Oxford-Tech Style) */
-            --bg: #08090a;
-            --surface: #111216;
-            --surface-alt: #1a1c22;
-            --accent: #7d9bbd; /* Blu Ardesia: Calma e Autorità */
-            --text-p: #e2e8f0; /* Bianco sporco per non affaticare gli occhi */
-            --text-s: #94a3b8;
-            --border: rgba(255, 255, 255, 0.06);
-            --font-serif: 'Charter', 'Bitstream Charter', 'Sitka Text', Cambria, serif;
-            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      :root {
+        --bg: #f7f3ec;
+        --paper: #fffdf8;
+        --paper-2: #f3ede3;
+        --ink: #1c1b18;
+        --ink-soft: #4d4a44;
+        --muted: #746d63;
+        --line: rgba(28, 27, 24, 0.10);
+        --line-strong: rgba(28, 27, 24, 0.18);
+        --accent: #1f4c46;
+        --accent-2: #b7792f;
+        --accent-soft: rgba(31, 76, 70, 0.08);
+        --shadow: 0 24px 60px rgba(39, 32, 22, 0.08);
+        --radius: 18px;
+        --radius-lg: 28px;
+        --content: 72ch;
+        --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+        --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(183, 121, 47, 0.06), transparent 24%),
+          radial-gradient(circle at top right, rgba(31, 76, 70, 0.06), transparent 22%),
+          linear-gradient(180deg, #f8f4ed 0%, #f6f1e8 100%);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        z-index: 999;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        box-shadow: 0 0 18px rgba(31, 76, 70, 0.22);
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 28px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(248, 244, 237, 0.82);
+        border-bottom: 1px solid rgba(28, 27, 24, 0.06);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+
+      .brand {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .brand-text {
+        font-size: 0.94rem;
+        color: var(--ink-soft);
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+      }
+
+      .nav-links a {
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.28s ease;
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 14px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 0.84rem;
+        font-weight: 600;
+        border: 1px solid var(--ink);
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+
+      .nav-cta:hover,
+      .hero-actions a:hover,
+      .featured-card:hover,
+      .article-card:hover,
+      .reading-card:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        padding: 56px 0 26px;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 28px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.55);
+        border: 1px solid var(--line);
+        color: var(--accent);
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      h1 {
+        margin: 16px 0 18px;
+        font-family: var(--font-serif);
+        font-size: clamp(2.45rem, 7vw, 5.6rem);
+        line-height: 0.96;
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        max-width: 11ch;
+      }
+
+      .hero-copy {
+        max-width: 60ch;
+      }
+
+      .hero-copy p {
+        margin: 0;
+        font-size: 1.06rem;
+        color: var(--ink-soft);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 18px;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        font-size: 0.94rem;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+        font-weight: 700;
+      }
+
+      .btn-secondary {
+        background: rgba(255,255,255,0.58);
+        color: var(--ink);
+      }
+
+      .hero-support {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .support-card {
+        padding: 18px;
+        background: rgba(255,255,255,0.65);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .support-card small {
+        display: block;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      .support-card p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      .principles {
+        padding: 12px 0 34px;
+      }
+
+      .principles-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .principle {
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.62);
+        border: 1px solid var(--line);
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .section-label {
+        display: inline-block;
+        margin-bottom: 8px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .section-head h2,
+      .reading-head h2,
+      .topics-head h2,
+      .about-head h2 {
+        margin: 0;
+        font-family: var(--font-serif);
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        line-height: 1.04;
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+
+      .section-head p,
+      .reading-head p,
+      .topics-head p,
+      .about-head p {
+        margin: 8px 0 0;
+        max-width: 56ch;
+        color: var(--ink-soft);
+      }
+
+      .main-layout {
+        display: grid;
+        gap: 32px;
+        padding: 18px 0 44px;
+      }
+
+      .featured-card {
+        display: block;
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.72));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-bottom: 12px;
+      }
+
+      .meta span:not(:first-child)::before {
+        content: "•";
+        margin-right: 8px;
+        color: var(--muted);
+      }
+
+      .featured-card h3 {
+        margin: 0 0 12px;
+        font-family: var(--font-serif);
+        font-size: clamp(1.9rem, 4vw, 3.1rem);
+        line-height: 1.03;
+        font-weight: 500;
+        letter-spacing: -0.035em;
+        max-width: 14ch;
+      }
+
+      .featured-card p {
+        margin: 0;
+        max-width: var(--content);
+        color: var(--ink-soft);
+        font-size: 1rem;
+      }
+
+      .featured-cta {
+        margin-top: 18px;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .articles-grid {
+        display: grid;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .article-card {
+        display: block;
+        padding: 20px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.62);
+        border: 1px solid var(--line);
+        transition: transform 0.28s ease, border-color 0.28s ease;
+      }
+
+      .article-card h4 {
+        margin: 8px 0 10px;
+        font-family: var(--font-serif);
+        font-size: 1.34rem;
+        line-height: 1.14;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+      }
+
+      .article-card p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      .sidebar {
+        display: grid;
+        gap: 16px;
+      }
+
+      .sidebar-card {
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.62);
+        border: 1px solid var(--line);
+      }
+
+      .sidebar-card h3 {
+        margin: 0 0 12px;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+      }
+
+      .mini-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .mini-item strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.97rem;
+        color: var(--ink);
+      }
+
+      .mini-item p,
+      .sidebar-card p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.92rem;
+      }
+
+      .topics {
+        padding: 18px 0 46px;
+      }
+
+      .topics-head {
+        margin-bottom: 18px;
+      }
+
+      .topics-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .topic-chip {
+        padding: 12px 14px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-size: 0.92rem;
+      }
+
+      .reading-path {
+        padding: 12px 0 46px;
+      }
+
+      .reading-head {
+        margin-bottom: 18px;
+      }
+
+      .reading-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .reading-card {
+        padding: 20px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(31,76,70,0.06), rgba(255,255,255,0.72));
+        border: 1px solid var(--line);
+        transition: transform 0.28s ease;
+      }
+
+      .reading-step {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: var(--accent-2);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .reading-card h3 {
+        margin: 0 0 8px;
+        font-family: var(--font-serif);
+        font-size: 1.35rem;
+        font-weight: 500;
+      }
+
+      .reading-card p {
+        margin: 0;
+        color: var(--ink-soft);
+      }
+
+      .pillars {
+        padding: 8px 0 54px;
+      }
+
+      .pillars-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .pillar-card {
+        padding: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.66);
+        border: 1px solid var(--line);
+      }
+
+      .pillar-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-family: var(--font-serif);
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
+
+      .pillar-card p {
+        margin: 0;
+        color: var(--ink-soft);
+      }
+
+      .about {
+        padding: 4px 0 60px;
+      }
+
+      .about-shell {
+        display: grid;
+        gap: 18px;
+        padding: 24px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.62));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .about-copy {
+        max-width: 70ch;
+        color: var(--ink-soft);
+      }
+
+      .about-copy p {
+        margin: 0;
+      }
+
+      .newsletter-box {
+        padding: 18px;
+        border-radius: 20px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .newsletter-box strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+
+      .newsletter-box p {
+        margin: 0 0 14px;
+        color: var(--ink-soft);
+      }
+
+      .newsletter-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .newsletter-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line-strong);
+        background: rgba(255,255,255,0.7);
+      }
+
+      .newsletter-actions a:first-child {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #fff;
+      }
+
+      footer {
+        padding: 22px 0 34px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .footer-inner {
+        display: grid;
+        gap: 12px;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (min-width: 760px) {
+        .container {
+          width: min(1180px, calc(100% - 46px));
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            background-color: var(--bg);
-            color: var(--text-p);
-            font-family: var(--font-sans);
-            margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
-            text-rendering: optimizeLegibility;
+        .nav-links {
+          display: flex;
         }
 
-        /* BARRA DI PROGRESSO (Dopamine Loop) */
-        #progress-bar {
-            position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent), #fff);
-            z-index: 9999; width: 0%;
+        .hero {
+          padding: 78px 0 34px;
         }
 
-        .container { 
-            width: min(1200px, 100% - 40px); 
-            margin: 0 auto; 
+        .hero-grid {
+          grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+          align-items: start;
+          gap: 34px;
         }
 
-        /* HEADER: Mobile Optimized */
-        nav {
-            padding: 1.5rem 0;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
-        .logo { 
-            font-weight: 800; font-size: 0.85rem; letter-spacing: 2px; 
-            text-transform: uppercase; color: var(--accent);
-        }
-        .nav-meta { font-size: 0.7rem; color: var(--text-s); font-weight: 600; }
-
-        /* HERO: The Hook */
-        .hero { padding: 4rem 0 3rem; }
-        .hero-tag { 
-            font-size: 0.7rem; font-weight: 700; color: var(--accent); 
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block;
-        }
-        h1 { 
-            font-family: var(--font-serif);
-            font-size: clamp(2.2rem, 8vw, 4rem); 
-            line-height: 1.1; font-weight: 400; margin: 0 0 1.5rem 0;
-            letter-spacing: -0.02em;
-        }
-        .hero-sub { 
-            font-size: 1.1rem; color: var(--text-s); max-width: 600px; 
-            line-height: 1.7; border-left: 1px solid var(--accent); padding-left: 20px;
+        .principles-grid,
+        .reading-grid,
+        .pillars-grid {
+          grid-template-columns: repeat(3, 1fr);
         }
 
-        /* GRID SYSTEM (Responsive) */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin: 2rem 0 5rem;
+        .articles-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
 
-        @media (min-width: 1024px) {
-            .content-grid { grid-template-columns: 2fr 1fr; gap: 4rem; }
+        .about-shell {
+          grid-template-columns: 1.4fr 0.8fr;
+          align-items: start;
         }
 
-        /* FEATURED CARD */
+        .footer-inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .container {
+          width: min(1220px, calc(100% - 72px));
+        }
+
+        .hero {
+          padding: 96px 0 38px;
+        }
+
+        .main-layout {
+          grid-template-columns: minmax(0, 1.8fr) minmax(290px, 0.82fr);
+          gap: 36px;
+        }
+
         .featured-card {
-            background: var(--surface);
-            padding: 2.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            text-decoration: none; color: inherit;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .featured-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-        .card-meta { display: flex; gap: 1rem; font-size: 0.65rem; color: var(--accent); font-weight: 700; margin-bottom: 1rem; }
-
-        /* SECONDARY ARTICLES */
-        .article-list { display: grid; gap: 2rem; }
-        .article-item { 
-            text-decoration: none; color: inherit;
-            padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
-            display: block; transition: 0.3s;
-        }
-        .article-item:hover { opacity: 0.7; }
-        .article-item h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400; margin: 0.5rem 0; }
-        .article-item p { color: var(--text-s); font-size: 0.9rem; margin: 0; }
-
-        /* SIDEBAR (Authority Tools) */
-        .sidebar { display: grid; gap: 2rem; align-content: start; }
-        .sidebar-box { 
-            background: var(--surface-alt); padding: 1.5rem; border-radius: 4px; 
-            border: 1px solid var(--border);
-        }
-        .sidebar-box h4 { 
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; 
-            color: var(--accent); margin-top: 0;
-        }
-        .sidebar-text { font-size: 0.85rem; color: var(--text-s); margin: 0; }
-
-        /* FOOTER */
-        footer { 
-            padding: 4rem 0; border-top: 1px solid var(--border); 
-            text-align: center; color: var(--text-s); font-size: 0.75rem; 
+          padding: 30px;
         }
 
-        /* ANIMATIONS */
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .sidebar {
+          position: sticky;
+          top: 94px;
+          align-self: start;
+        }
+      }
     </style>
-</head>
-<body>
-    <div id="progress-bar"></div>
+  </head>
 
-    <div class="container">
+  <body>
+    <div class="progress-bar" id="pb"></div>
+
+    <div class="topbar">
+      <div class="container">
         <nav>
-            <div class="logo">MANUEL // ARCHIVE</div>
-            <div class="nav-meta">EST. 2026 // OPEN ACCESS</div>
+          <div class="brand">
+            <div class="brand-mark">MANUEL</div>
+            <div class="brand-text">Psicologia, filosofia e neuroscienza applicata</div>
+          </div>
+
+          <div class="nav-links">
+            <a href="#articoli">Articoli</a>
+            <a href="#percorso">Percorso</a>
+            <a href="#pilastri">Pilastri</a>
+            <a href="#about">About</a>
+          </div>
+
+          <a href="#articoli" class="nav-cta">Inizia a leggere</a>
         </nav>
-
-        <header class="hero reveal">
-            <span class="hero-tag">Laboratorio di Ricerca Comportamentale</span>
-            <h1>Analisi tecnica della mente e dei sistemi di performance.</h1>
-            <p class="hero-sub">
-                Benvenuto. Qui non troverai crescita personale generica, ma analisi dei processi bio-psicologici che governano l'essere umano.
-            </p>
-        </header>
-
-        <main class="content-grid">
-            <section class="reveal">
-                <a href="#" class="featured-card">
-                    <div class="card-meta">
-                        <span>{featured.label}</span>
-                        <span>{featured.readTime}</span>
-                        <span>{featured.citations} CITAZIONI</span>
-                    </div>
-                    <h2 style="font-family: var(--font-serif); font-size: 2rem; margin: 0 0 1rem 0; font-weight: 400;">{featured.title}</h2>
-                    <p style="color: var(--text-s); margin-bottom: 2rem;">{featured.excerpt}</p>
-                    <span style="font-size: 0.8rem; font-weight: 700; border-bottom: 1px solid var(--accent);">LEGGI IL PAPER INTEGRALE</span>
-                </a>
-
-                <div style="margin-top: 4rem;">
-                    <h2 style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; color: var(--text-s);">Ultimi Aggiornamenti</h2>
-                    <div class="article-list">
-                        {articles.map(art => (
-                            <a href="#" class="article-item">
-                                <div class="card-meta" style="margin-bottom: 0.2rem;">
-                                    <span>{art.category}</span>
-                                    <span>{art.time}</span>
-                                </div>
-                                <h3>{art.title}</h3>
-                                <p>{art.preview}</p>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <aside class="sidebar">
-                <div class="sidebar-box reveal">
-                    <h4>Metodologia</h4>
-                    <p class="sidebar-text">
-                        Ogni articolo segue rigorosi criteri di peer-review interna. Citiamo solo fonti primarie da riviste di settore (Nature, Science, PubMed).
-                    </p>
-                </div>
-
-                <div class="sidebar-box reveal" style="border-left: 3px solid var(--accent);">
-                    <h4>Livello di Analisi</h4>
-                    <div style="display: flex; gap: 5px; margin-top: 10px;">
-                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
-                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
-                        <span style="width: 20%; height: 4px; background: var(--accent);"></span>
-                        <span style="width: 20%; height: 4px; background: var(--border);"></span>
-                        <span style="width: 20%; height: 4px; background: var(--border);"></span>
-                    </div>
-                    <p class="sidebar-text" style="margin-top: 10px;">Complessità media attuale: <strong>72% (Technical)</strong></p>
-                </div>
-
-                <div class="sidebar-box reveal">
-                    <h4>Status dell'Archivio</h4>
-                    <p class="sidebar-text">
-                        Aggiornato in tempo reale. Nuove analisi caricate ogni 72 ore.
-                    </p>
-                </div>
-            </aside>
-        </main>
-
-        <footer>
-            <p>© 2026 MANUEL ARCHIVE. NESSUNA IA È STATA UTILIZZATA PER LA VALIDAZIONE SCIENTIFICA DELLE TESI.</p>
-        </footer>
+      </div>
     </div>
 
-    <script>
-        // Progress Bar
-        window.onscroll = () => {
-            const scroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("progress-bar").style.width = (scroll / height) * 100 + "%";
-        };
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-main reveal">
+              <div class="eyebrow">Editoriale 2026</div>
+              <h1>Idee chiare per una mente più forte, stabile e lucida.</h1>
 
-        // Smooth Reveal
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
-    </script>
-</body>
-</html>
+              <div class="hero-copy">
+                <p>
+                  Questo non è un blog costruito per intrattenere per trenta secondi.
+                  È uno spazio editoriale pensato per aiutarti a comprendere meglio
+                  cosa guida il tuo carattere, le tue scelte, la tua attenzione e il tuo modo di vivere.
+                </p>
+              </div>
+
+              <div class="hero-actions">
+                <a href="#articoli" class="btn-primary">Leggi l’articolo in evidenza</a>
+                <a href="#percorso" class="btn-secondary">Scopri il metodo</a>
+              </div>
+            </div>
+
+            <div class="hero-support reveal">
+              <div class="support-card">
+                <small>Per chi è</small>
+                <p>
+                  Per chi non vuole solo sentirsi motivato, ma capire davvero
+                  come funziona la mente e come trasformare la comprensione in struttura.
+                </p>
+              </div>
+
+              <div class="support-card">
+                <small>Cosa trovi qui</small>
+                <p>
+                  Psicologia cognitiva, filosofia applicata, neuroscienza della performance,
+                  abitudini, attenzione, carattere e trasformazione interiore.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles">
+        <div class="container">
+          <div class="principles-grid reveal">
+            {principles.map((item) => (
+              <div class="principle">{item}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="main-content">
+        <div class="container">
+          <div class="main-layout">
+            <section id="articoli" class="reveal">
+              <div class="section-head">
+                <div>
+                  <span class="section-label">Da dove iniziare</span>
+                  <h2>Un ingresso semplice, una profondità vera.</h2>
+                  <p>
+                    La struttura è pensata per ridurre l’attrito: prima un contenuto guida,
+                    poi altri articoli forti e leggibili, così il lettore sa sempre dove andare dopo.
+                  </p>
+                </div>
+              </div>
+
+              <a href={featuredPost.link} class="featured-card">
+                <div class="meta">
+                  <span>{featuredPost.category}</span>
+                  <span>{featuredPost.time}</span>
+                </div>
+                <h3>{featuredPost.title}</h3>
+                <p>{featuredPost.excerpt}</p>
+                <div class="featured-cta">Leggi ora →</div>
+              </a>
+
+              <div class="articles-grid">
+                {primaryArticles.map((post) => (
+                  <a href={post.link} class="article-card">
+                    <div class="meta">
+                      <span>{post.category}</span>
+                      <span>{post.time}</span>
+                    </div>
+                    <h4>{post.title}</h4>
+                    <p>{post.excerpt}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <aside class="sidebar reveal">
+              <div class="sidebar-card">
+                <h3>Perché restare qui</h3>
+                <div class="mini-list">
+                  <div class="mini-item">
+                    <strong>Chiarezza</strong>
+                    <p>Concetti complessi spiegati in modo leggibile e pulito.</p>
+                  </div>
+                  <div class="mini-item">
+                    <strong>Profondità</strong>
+                    <p>Non contenuti usa e getta, ma idee con densità reale.</p>
+                  </div>
+                  <div class="mini-item">
+                    <strong>Applicazione</strong>
+                    <p>Ogni articolo deve poter modificare il modo in cui pensi o agisci.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sidebar-card">
+                <h3>Come leggere questo blog</h3>
+                <p>
+                  Non serve correre. L’idea è uscire da ogni articolo con una comprensione
+                  più ordinata, più precisa e più utile da usare
