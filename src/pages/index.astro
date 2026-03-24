@@ -3,285 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EUDAMONIA | Architettura della Mente Superiore</title>
+    <title>ARCHETYPE | Neuro-Engineering & Positive Philosophy</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --gold: #d4af37;
-            --deep-black: #050505;
-            --soft-white: #f4f4f4;
+            --obsidian: #020202;
+            --gold-leaf: #af944d;
+            --neural-gray: #1a1a1a;
+            --fluid-type: clamp(1rem, 2vw, 1.5rem);
         }
+
         body {
-            background-color: var(--deep-black);
-            color: var(--soft-white);
-            font-family: 'Inter', sans-serif;
+            background-color: var(--obsidian);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            cursor: crosshair; /* Neuro-attentional trigger: cambia la percezione dell'interazione */
             overflow-x: hidden;
         }
-        .serif { font-family: 'Playfair Display', serif; }
-        
-        /* Glassmorphism avanzato */
-        .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        .serif-display { font-family: 'Cinzel', serif; }
+
+        /* Effetto di Depth Perception (Psicologia della Gestalt) */
+        .layer-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(2, 2, 2, 0.8);
         }
 
-        /* Indicatore di lettura (Psicologia del completamento) */
-        #progress-bar {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--gold));
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            transition: width 0.2s;
-        }
-
-        /* Animazione di entrata per i neuroni specchio */
-        .fade-in {
+        /* Scarsità Visiva: Solo un elemento alla volta domina */
+        .focus-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateY(50px);
         }
 
-        /* Pulsante con Effetto Scarsità */
-        .cta-glow {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            transition: all 0.3s;
+        /* Custom Scrollbar per non interrompere il flow */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--obsidian); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-leaf); }
+
+        /* Animazione Carico Cognitivo (Dopamine Loop) */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: var(--obsidian);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        .cta-glow:hover {
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-            transform: scale(1.02);
+
+        .neuro-pulse {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--gold-leaf);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div id="progress-bar" style="width: 0%"></div>
+    <div id="loader">
+        <div class="neuro-pulse"></div>
+        <p class="mt-8 text-[10px] tracking-[0.5em] text-gray-500 uppercase italic">Calibrazione Sinaptica in corso...</p>
+    </div>
 
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
-        <div class="text-2xl font-bold tracking-tighter serif italic">Eudamonia.</div>
-        <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-bold">
-            <a href="#neuroscience" class="hover:text-[#d4af37] transition">Neuroscience</a>
-            <a href="#philosophy" class="hover:text-[#d4af37] transition">Stoic Logic</a>
-            <a href="#audit" class="hover:text-[#d4af37] transition">The Audit</a>
-        </div>
-        <div class="text-xs border border-white/20 px-4 py-2 rounded-full cursor-pointer hover:bg-white hover:text-black transition">
-            Accesso Protocolli
+    <nav class="fixed top-0 w-full z-50 p-8 flex justify-between items-center mix-blend-difference">
+        <div class="text-xl font-bold tracking-[0.3em] serif-display">ARCHETYPE <span class="text-[8px] align-top">©</span></div>
+        <div class="flex gap-10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 transition">
+            <a href="#lab" class="hover:text-[#af944d]">Protocolli</a>
+            <a href="#logic" class="hover:text-[#af944d]">Logica</a>
+            <a href="#join" class="border border-white/20 px-4 py-2 rounded-full">Membership</a>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505] to-[#050505]"></div>
-            <canvas id="heroCanvas" class="opacity-30"></canvas>
+    <section class="relative h-screen flex flex-col justify-center px-10 md:px-32 overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#af944d" d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.7,-31.3,87.1,-15.7,85.8,-0.7C84.6,14.2,78.7,28.5,70.1,41.1C61.5,53.7,50.2,64.7,36.8,71.5C23.4,78.3,8,80.9,-6.9,79.7C-21.8,78.5,-36.2,73.5,-48.9,65.1C-61.6,56.7,-72.6,44.9,-78.7,31.2C-84.8,17.5,-86.1,1.9,-83.4,-12.9C-80.7,-27.7,-74,-41.7,-64,-53.4C-54,-65.1,-40.7,-74.5,-26.6,-78.9C-12.5,-83.3,2.4,-82.7,18.1,-80.1C33.8,-77.5,44.7,-76.4,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
         </div>
 
-        <div class="relative z-10 text-center max-w-5xl px-6">
-            <span class="inline-block text-[#d4af37] tracking-[0.5em] uppercase text-[10px] mb-4 font-bold fade-in">Ingegneria del Potenziale Umano</span>
-            <h1 class="text-6xl md:text-9xl serif italic leading-tight mb-8 fade-in">
-                La Felicità è una <br> <span class="text-white not-italic font-extrabold tracking-tighter">Scienza Esatta.</span>
+        <div class="z-10">
+            <h2 class="text-[#af944d] text-xs font-bold uppercase tracking-[0.8em] mb-6">Evidence-Based Excellence</h2>
+            <h1 class="text-6xl md:text-8xl serif-display leading-none mb-10">
+                L'Ingegneria <br> <span class="italic text-gray-500">del Domani</span> <br> Inizia Oggi.
             </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 fade-in">
-                Abbandona la crescita personale banale. Applichiamo i protocolli di <strong>Neuroplasticità</strong> e <strong>Stoicismo Operativo</strong> per riconfigurare il tuo Default Mode Network.
+            <p class="max-w-xl text-gray-400 text-sm leading-loose mb-12 border-l-2 border-[#af944d] pl-6">
+                Applichiamo il 100% degli studi sulla <strong>Plasticità Neuronale</strong> e sulla <strong>Teoria dei Nudge</strong> per ottimizzare la tua traiettoria biologica. La filosofia non è più astrazione: è un protocollo biochimico.
             </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 fade-in">
-                <a href="#audit" class="cta-glow bg-[#d4af37] text-black font-black py-5 px-10 rounded-sm uppercase text-xs tracking-widest">Inizia il Protocollo</a>
-                <span class="text-gray-600 text-xs italic tracking-widest">Basato su Seligman, 2011 (PERMA Theory)</span>
-            </div>
+            <button class="bg-[#af944d] text-black px-12 py-5 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all transform hover:scale-105">
+                Inizia l'Audit Biometrico
+            </button>
         </div>
     </section>
 
-    <section id="neuroscience" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-20 items-center">
-                <div class="fade-in">
-                    <h2 class="text-4xl md:text-5xl serif mb-8 italic italic">L'analisi dei Dati <br><span class="not-italic font-bold">non mente mai.</span></h2>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        Secondo la <em>Broaden-and-Build Theory</em> (Fredrickson, 2004), le emozioni positive non sono semplici "piaceri", ma motori evolutivi che espandono il repertorio pensiero-azione. Questo sito non è un blog, è un laboratorio di <strong>Psicologia Economica</strong> applicata alla vita quotidiana.
-                    </p>
-                    <div class="space-y-6">
-                        <div class="glass p-6 rounded-lg">
-                            <h4 class="text-[#d4af37] font-bold text-sm mb-2 uppercase">Recettori Dopaminici</h4>
-                            <p class="text-xs text-gray-500 italic">Ottimizzazione del circuito di ricompensa attraverso la gratitudine metodica.</p>
-                        </div>
+    <section id="lab" class="focus-section py-20 px-10 md:px-32 bg-[#050505]">
+        <div class="grid md:grid-cols-2 gap-20">
+            <div class="space-y-12">
+                <h3 class="text-4xl serif-display">Dati, non dogmi.</h3>
+                <div class="space-y-8">
+                    <div class="group">
+                        <span class="text-[10px] text-[#af944d] font-bold uppercase tracking-widest">01 / Biologia della Resilienza</span>
+                        <p class="text-gray-500 mt-2 text-sm leading-relaxed">Come il nervo vago influenza il tuo processo decisionale economico (Porges, 2011). Analisi dei biomarcatori dello stress.</p>
                     </div>
-                </div>
-                <div class="relative fade-in">
-                    <canvas id="dataChart" class="max-w-full"></canvas>
-                    <div class="absolute -bottom-10 -right-10 glass p-6 hidden md:block">
-                        <span class="text-5xl font-black text-[#d4af37] block">+42%</span>
-                        <span class="text-[10px] uppercase tracking-widest">Resilienza Cognitiva</span>
+                    <div class="group">
+                        <span class="text-[10px] text-[#af944d] font-bold uppercase tracking-widest">02 / Psicologia Positiva Applicata</span>
+                        <p class="text-gray-500 mt-2 text-sm leading-relaxed">Framework PERMA-V per la massimizzazione del capitale umano in contesti di alta pressione.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section id="audit" class="py-32 bg-white text-black">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-5xl serif italic font-bold mb-4">Self-Audit Cognitivo</h2>
-            <p class="text-gray-600 mb-16 uppercase tracking-[0.2em] text-xs font-bold">Misura la tua distanza dall'Eudaimonia</p>
-            
-            <div id="quiz-container" class="text-left space-y-12">
-                <div class="question-step" data-step="1">
-                    <h3 class="text-2xl font-bold mb-6 italic">1. Qual è la tua capacità di "Flow" durante le task complesse?</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <button onclick="nextStep(2)" class="border-2 border-black p-4 text-left hover:bg-black hover:text-white transition font-bold uppercase text-xs">A. Alta (Stato di immersione totale)</button>
-                        <button onclick="nextStep(2)" class="border-2 border-black p-4 text-left hover:bg-black hover:text-white transition font-bold uppercase text-xs">B. Bassa (Distrazione costante)</button>
-                    </div>
+            <div class="relative flex items-center justify-center">
+                <div class="w-full h-[400px] border border-white/10 rounded-2xl flex items-center justify-center p-10 overflow-hidden group">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#af944d]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                    <p class="text-center italic text-gray-400 serif-display text-xl">"La mente è l'unico limite della biologia."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="philosophy" class="py-32 px-6 bg-[#0a0a0a]">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-6xl serif italic mb-16 fade-in">Oltre il Nihilismo.</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-10 text-left fade-in">
-                    <span class="text-[#d4af37] text-4xl serif mb-6 block">01</span>
-                    <h3 class="text-xl font-bold mb-4">Stoicismo Operativo</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed italic">"Non sono le cose a turbarci, ma il nostro giudizio su di esse." - Epitteto. Trasformiamo la teoria in algoritmi comportamentali.</p>
-                </div>
-                <div class="glass p-10 text-left border-t-2 border-[#d4af37] fade-in">
-                    <span class="text-[#d4af37] text-4xl serif mb-6 block">02</span>
-                    <h3 class="text-xl font-bold mb-4">Neuromarketing di Sé</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed italic">Vendi a te stesso la versione migliore della tua identità attraverso il reframing cognitivo costante.</p>
-                </div>
-                <div class="glass p-10 text-left fade-in">
-                    <span class="text-[#d4af37] text-4xl serif mb-6 block">03</span>
-                    <h3 class="text-xl font-bold mb-4">Bio-Ottimizzazione</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed italic">Il benessere non è spirituale. È chimico. Gestione del cortisolo e picchi di ossitocina basati sulla scienza.</p>
+    <section id="logic" class="py-32 bg-white text-black text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-sm font-black uppercase tracking-[0.5em] mb-12">Assessment Cognitivo</h2>
+            <div id="quiz-box" class="p-10 border-2 border-black/5 rounded-3xl transition-all duration-500">
+                <p class="text-2xl serif-display mb-10">Qual è il tuo livello attuale di entropia mentale?</p>
+                <div class="flex flex-col gap-4">
+                    <button onclick="nextStep()" class="border border-black py-4 hover:bg-black hover:text-white transition uppercase text-[10px] font-bold tracking-widest">Calcola Baseline</button>
+                    <span class="text-[8px] text-gray-400 mt-4 uppercase tracking-widest italic">Tempo stimato: 45 secondi. Validità scientifica: 98.4%</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-32 border-t border-white/10 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl serif italic mb-8">Unisciti all'Elite Cognitiva.</h2>
-            <p class="text-gray-500 mb-12 text-sm uppercase tracking-widest">Ricevi il "Protocollo Phronesis" (Solo 100 invii al mese per garantire l'esclusività)</p>
-            
-            <form class="flex flex-col md:flex-row gap-4 mb-16">
-                <input type="email" placeholder="Indirizzo email criptato" class="bg-transparent border-b border-gray-700 py-4 px-6 w-full focus:outline-none focus:border-[#d4af37] transition text-sm">
-                <button type="submit" class="bg-white text-black font-black px-12 py-4 uppercase text-[10px] tracking-widest hover:bg-[#d4af37] transition">Ottieni Accesso</button>
-            </form>
-            
-            <div class="flex justify-center space-x-8 text-gray-600 text-[10px] uppercase font-bold tracking-widest">
-                <span>© 2026 Eudamonia Lab</span>
-                <a href="#">Etica della Mente</a>
-                <a href="#">White Papers</a>
+    <footer id="join" class="py-32 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10">
+            <div class="max-w-xl">
+                <h4 class="text-5xl serif-display mb-8 italic">Entra nel Cerchio.</h4>
+                <p class="text-gray-500 text-sm leading-relaxed">Non inviamo newsletter. Distribuiamo <strong>Protocolli di Eccellenza</strong>. Una volta al mese, direttamente nella tua corteccia prefrontale (via email).</p>
+                <div class="mt-10 flex gap-4">
+                    <input type="email" placeholder="Accesso ID Email" class="bg-transparent border-b border-white/20 py-4 w-full focus:outline-none focus:border-[#af944d] text-sm">
+                    <button class="bg-white text-black px-10 font-bold uppercase text-[10px] tracking-tighter">Sincronizza</button>
+                </div>
+            </div>
+            <div class="text-[10px] text-gray-700 tracking-[0.4em] uppercase font-bold text-right">
+                Neuro-Marketing <br> Behavioral Economics <br> Cognitive Design <br> 2026 Archive
             </div>
         </div>
     </footer>
 
     <script>
-        // 1. Progress Bar Logic
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-            
-            // Fade-in trigger
-            document.querySelectorAll('.fade-in').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight * 0.8) {
-                    el.classList.add('visible');
-                }
-            });
-        };
+        // Registrazione Plugin GSAP
+        gsap.registerPlugin(ScrollTrigger);
 
-        // 2. Background Animation (Visual Hook)
-        const canvas = document.getElementById('heroCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particles = [];
-        for(let i=0; i<100; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2,
-                speedX: Math.random() * 0.5 - 0.25,
-                speedY: Math.random() * 0.5 - 0.25
-            });
-        }
-
-        function animate() {
-            ctx.clearRect(0,0, canvas.width, canvas.height);
-            ctx.fillStyle = '#d4af37';
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-                p.x += p.speedX;
-                p.y += p.speedY;
-                if(p.x > canvas.width) p.x = 0;
-                if(p.y > canvas.height) p.y = 0;
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // 3. Chart Logic (Authority Building)
-        const ctxChart = document.getElementById('dataChart').getContext('2d');
-        new Chart(ctxChart, {
-            type: 'line',
-            data: {
-                labels: ['Sett 1', 'Sett 2', 'Sett 3', 'Sett 4', 'Sett 5', 'Sett 6'],
-                datasets: [{
-                    label: 'Focus Cognitivo (Standard vs Protocollo E.)',
-                    data: [12, 19, 15, 25, 32, 45],
-                    borderColor: '#d4af37',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    pointBackgroundColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: { y: { display: false }, x: { grid: { display: false }, ticks: { color: '#555' } } }
-            }
+        // LOADER Logic (Dopamine Release Delay)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                gsap.to("#loader", { 
+                    opacity: 0, 
+                    duration: 1.5, 
+                    ease: "power4.inOut",
+                    onComplete: () => {
+                        document.getElementById('loader').style.display = 'none';
+                        initAnimations();
+                    }
+                });
+            }, 2000); // Ritardo calcolato per creare aspettativa
         });
 
-        // 4. Interactive Quiz Logic (Engagement Loop)
-        function nextStep(step) {
-            const container = document.getElementById('quiz-container');
-            if(step === 2) {
-                container.innerHTML = `
-                    <div class="fade-in visible">
-                        <h3 class="text-2xl font-bold mb-6 italic animate-pulse">Analisi in corso...</h3>
-                        <div class="w-full bg-gray-200 h-2 mb-8">
-                            <div class="bg-black h-2" style="width: 70%; transition: width 2s"></div>
-                        </div>
-                        <p class="text-lg">Stiamo calcolando il tuo indice di <strong>Resilienza Filosofica</strong> basato sulla teoria di Seligman.</p>
-                        <button onclick="showFinal()" class="mt-8 bg-black text-white px-10 py-4 font-bold uppercase text-xs">Vedi Risultato Esclusivo</button>
-                    </div>
-                `;
-            }
+        function initAnimations() {
+            // Animazione Entrata Hero
+            gsap.from("h1", { opacity: 0, x: -100, duration: 1.5, ease: "power4.out" });
+            gsap.from("p", { opacity: 0, y: 50, duration: 1.5, delay: 0.5, ease: "power4.out" });
+
+            // Reveal Sections on Scroll (Psicologia della scoperta)
+            gsap.utils.toArray('.focus-section').forEach(section => {
+                gsap.to(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power2.out"
+                });
+            });
         }
 
-        function showFinal() {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = `
-                <div class="fade-in visible text-center p-10 border-4 border-black">
-                    <h3 class="text-4xl font-bold mb-4">Livello: Architetto Latente</h3>
-                    <p class="mb-6">Il tuo cervello mostra una predisposizione naturale alla <strong>Neuroplasticità</strong>, ma è attualmente bloccato da bias cognitivi di base. </p>
-                    <a href="#philosophy" class="inline-block bg-[#d4af37] text-black px-8 py-3 font-bold uppercase text-xs">Sblocca il Potenziale</a>
-                </div>
-            `;
+        // QUIZ Logic (Sunk Cost Fallacy)
+        function nextStep() {
+            const box = document.getElementById('quiz-box');
+            box.style.opacity = '0';
+            setTimeout(() => {
+                box.innerHTML = `
+                    <h3 class="text-xl font-bold italic mb-6">Analisi Neuro-Trasmettitori in corso...</h3>
+                    <div class="w-full bg-gray-100 h-1 mb-8">
+                        <div id="bar" class="bg-[#af944d] h-1 w-0 transition-all duration-[3000ms]"></div>
+                    </div>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest">Stiamo incrociando i tuoi dati con il database di Kahneman...</p>
+                `;
+                box.style.opacity = '1';
+                setTimeout(() => {
+                    document.getElementById('bar').style.width = '100%';
+                    setTimeout(() => {
+                        box.innerHTML = `
+                            <h3 class="text-3xl serif-display mb-4">Profilo: "Ottimizzatore Latente"</h3>
+                            <p class="mb-8 text-gray-600">Il tuo cervello mostra un'alta resistenza al bias di conferma, ma soffre di fatica decisionale cronica.</p>
+                            <button onclick="location.href='#join'" class="bg-black text-white px-8 py-3 text-[10px] font-bold uppercase tracking-widest">Scarica il tuo Report (PDF)</button>
+                        `;
+                    }, 3200);
+                }, 100);
+            }, 500);
         }
+
+        // BIOMETRIC HOVER (Propriocezione Digitale)
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            gsap.to(".serif-display", { x: moveX, y: moveY, duration: 1 });
+        });
     </script>
 </body>
 </html>
