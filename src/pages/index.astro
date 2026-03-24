@@ -1,183 +1,967 @@
----
-const metadata = {
-  title: "MANUEL ARCHIVE | Neuroscienze e Comportamento",
-  description: "Ricerca indipendente su biologia del carattere e modelli mentali per l'alto rendimento."
-};
-
-const articles = [
-  {
-    cat: "NEUROBIOLOGIA",
-    title: "La Chimica della Disciplina: Oltre la Forza di Volontà",
-    desc: "Analisi dei circuiti dopaminergici e del ruolo della corteccia prefrontale nella gestione dello sforzo.",
-    time: "10 min",
-    level: "Technical"
-  },
-  {
-    cat: "PSICOLOGIA",
-    title: "Bias Cognitivi: L'architettura del tuo auto-inganno",
-    desc: "Come il cervello distorce la realtà per risparmiare energia e come resettare i filtri percettivi.",
-    time: "8 min",
-    level: "Scientific"
-  }
-];
----
-
+<!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>{metadata.title}</title>
-    <style>
-        :root {
-            --bg: #050608;
-            --surface: #0f1115;
-            --accent: #7d9bbd; /* Blu Ardesia - Autorità */
-            --text-p: #e2e8f0;
-            --text-s: #818996;
-            --border: rgba(255,255,255,0.06);
-            --font-serif: 'Spectral', Georgia, serif;
-            --font-sans: 'Inter', system-ui, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intus — Psicologia positiva, filosofia, evidenza</title>
+  <meta name="description" content="Una pagina editoriale elegante su psicologia positiva, filosofia e scienza, progettata per favorire lettura profonda, fiducia e ritorno spontaneo." />
+  <meta name="theme-color" content="#f7f3ec" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: rgba(255,255,255,0.72);
+      --paper-strong: rgba(255,255,255,0.92);
+      --ink: #1d1b19;
+      --muted: #6c655d;
+      --line: rgba(29,27,25,0.08);
+      --accent: #8a6240;
+      --accent-2: #274c47;
+      --gold: #af8f55;
+      --shadow: 0 20px 60px rgba(28, 24, 18, 0.10);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1240px;
+    }
 
-        /* RESET & BASE */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            background: var(--bg); 
-            color: var(--text-p); 
-            font-family: var(--font-sans); 
-            line-height: 1.6;
-            overflow-x: hidden;
-            opacity: 0; /* Nascondiamo tutto finché non è pronto */
-            transition: opacity 0.8s ease;
-        }
-        body.loaded { opacity: 1; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(175,143,85,0.15), transparent 30%),
+        radial-gradient(circle at top right, rgba(39,76,71,0.12), transparent 32%),
+        linear-gradient(180deg, #f8f5ef 0%, #f3eee5 100%);
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+    }
 
-        /* PRE-LOADER (Corretto) */
-        #loader {
-            position: fixed; inset: 0; background: var(--bg);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s;
-        }
-        .spinner {
-            width: 40px; height: 40px; border: 2px solid var(--border);
-            border-top-color: var(--accent); border-radius: 50%;
-            animation: spin 1s linear infinite; margin-bottom: 20px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        
-        /* LAYOUT */
-        .container { width: min(1100px, 100% - 40px); margin: 0 auto; }
-        
-        nav { 
-            padding: 30px 0; display: flex; justify-content: space-between; 
-            border-bottom: 1px solid var(--border); font-size: 0.75rem; letter-spacing: 2px;
-        }
-        .logo { font-weight: 800; color: var(--accent); }
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
+      z-index: 999;
+      box-shadow: 0 6px 20px rgba(138,98,64,0.35);
+    }
 
-        /* HERO - Psicologia dell'Impatto */
-        .hero { padding: 80px 0 40px; text-align: left; }
-        h1 { 
-            font-family: var(--font-serif); font-size: clamp(2.2rem, 8vw, 4rem); 
-            line-height: 1.1; margin-bottom: 25px; font-weight: 400;
-        }
-        .hero p { color: var(--text-s); font-size: 1.2rem; max-width: 650px; border-left: 2px solid var(--accent); padding-left: 20px; }
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
 
-        /* MAIN CONTENT */
-        .main-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; }
-        @media (min-width: 1024px) { .main-grid { grid-template-columns: 2fr 1fr; } }
+    .nav-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+      padding-top: 14px;
+    }
 
-        /* CARDS */
-        .card { 
-            background: var(--surface); padding: 30px; border-radius: 4px; 
-            border: 1px solid var(--border); text-decoration: none; color: inherit;
-            display: block; transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            margin-bottom: 20px;
-        }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .tag { font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 1.5px; margin-bottom: 10px; display: block; }
-        .card h2 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 15px; font-weight: 400; }
-        .card p { color: var(--text-s); font-size: 0.95rem; }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.68);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
 
-        /* SIDEBAR */
-        .sidebar-box { padding: 25px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); margin-bottom: 20px; }
-        .sidebar-box h4 { font-size: 0.7rem; letter-spacing: 1px; color: var(--accent); text-transform: uppercase; margin-bottom: 15px; }
-        .sidebar-box p { font-size: 0.85rem; color: var(--text-s); }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
 
-        /* PROGRESS BAR */
-        #progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 10000; width: 0%; }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      box-shadow: inset 0 0 30px rgba(255,255,255,0.15);
+    }
 
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    .brand-text strong {
+      display: block;
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--ink);
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      box-shadow: 0 12px 30px rgba(39,76,71,0.20);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+    }
+
+    header.hero {
+      padding: 58px 0 34px;
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(138,98,64,0.18);
+      background: rgba(255,255,255,0.55);
+      border-radius: 999px;
+      color: var(--accent-2);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.5rem, 7vw, 6.3rem);
+      font-weight: 600;
+      max-width: 12ch;
+    }
+
+    .hero-copy p {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.06rem;
+      margin: 22px 0 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .meta-card,
+    .panel,
+    .quote-card,
+    .article-card,
+    .newsletter,
+    .principle,
+    .footer-card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .meta-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .feature-panel {
+      padding: 28px;
+      position: relative;
+      min-height: 460px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.66)),
+        radial-gradient(circle at top right, rgba(175,143,85,0.16), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(39,76,71,0.14), transparent 38%);
+    }
+
+    .feature-panel::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(29,27,25,0.06);
+      pointer-events: none;
+    }
+
+    .feature-panel small {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .feature-panel h2 {
+      margin-top: 14px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      max-width: 10ch;
+    }
+
+    .feature-panel p {
+      color: var(--muted);
+      max-width: 45ch;
+      margin-top: 16px;
+    }
+
+    .insight-stack {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .insight {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(29,27,25,0.06);
+    }
+
+    .insight b {
+      display: block;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+
+    .insight span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .orb {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex: 0 0 42px;
+      background: linear-gradient(135deg, rgba(39,76,71,0.18), rgba(138,98,64,0.22));
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
+
+    section {
+      padding: 44px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 600;
+      max-width: 10ch;
+    }
+
+    .section-head p {
+      max-width: 56ch;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .quote-card {
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      min-height: 100%;
+      position: sticky;
+      top: 100px;
+    }
+
+    .quote-card .kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .quote-card blockquote {
+      margin: 18px 0 14px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.7vw, 2.8rem);
+      line-height: 1.02;
+    }
+
+    .quote-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .articles {
+      display: grid;
+      gap: 18px;
+    }
+
+    .article-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(138,98,64,0.18);
+      background: var(--paper-strong);
+    }
+
+    .article-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(39,76,71,0.08);
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .article-card h3 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      max-width: 18ch;
+    }
+
+    .article-card p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .article-footer {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .principle {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+    }
+
+    .principle strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .principle p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .newsletter {
+      border-radius: calc(var(--radius-xl) + 8px);
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.78)),
+        radial-gradient(circle at top left, rgba(175,143,85,0.18), transparent 30%);
+    }
+
+    .newsletter h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      max-width: 12ch;
+    }
+
+    .newsletter p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: end;
+    }
+
+    .form input {
+      min-width: min(100%, 320px);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      padding: 14px 16px;
+      border-radius: 999px;
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .form input:focus {
+      border-color: rgba(39,76,71,0.22);
+      box-shadow: 0 0 0 4px rgba(39,76,71,0.08);
+    }
+
+    footer {
+      padding: 18px 0 56px;
+    }
+
+    .footer-card {
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .split,
+      .newsletter,
+      .footer-card,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-card { position: relative; top: 0; }
+      .form { justify-content: start; }
+      .footer-links { justify-content: start; }
+    }
+
+    @media (max-width: 780px) {
+      .nav-links { display: none; }
+      .meta-row { grid-template-columns: 1fr; }
+      h1 { max-width: 11ch; }
+      .feature-panel { min-height: auto; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
+  <div class="progress" id="progress"></div>
 
-    <div id="progress"></div>
+  <div class="container nav-wrap">
+    <nav aria-label="Navigazione principale">
+      <a href="#top" class="brand" aria-label="Intus home">
+        <div class="brand-mark">I</div>
+        <div class="brand-text">
+          <strong>Intus</strong>
+          <span>Psicologia positiva, filosofia, pratica</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#manifesto">Manifesto</a>
+        <a href="#articoli">Articoli</a>
+        <a href="#metodo">Metodo</a>
+        <a href="#lettera">Lettera</a>
+      </div>
+      <a class="btn btn-secondary" href="#lettera">Ricevi un saggio</a>
+    </nav>
+  </div>
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <div id="loader-text" style="font-size: 0.7rem; letter-spacing: 2px; color: var(--text-s);">CALIBRAZIONE SINAPTICA...</div>
+  <header class="hero container" id="top">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">Scienza, profondità, bellezza cognitiva</div>
+        <h1>La mente fiorisce dove il pensiero non viene semplificato.</h1>
+        <p>
+          Intus è una casa editoriale digitale dedicata alla psicologia positiva intelligente: non slogan,
+          non ottimismo superficiale, ma ricerca, filosofia, attenzione al linguaggio e idee che trasformano
+          il modo in cui una persona comprende il proprio benessere.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#articoli">Inizia a leggere</a>
+          <a class="btn btn-secondary" href="#manifesto">Perché esistiamo</a>
+        </div>
+        <div class="meta-row">
+          <article class="meta-card reveal">
+            <strong>Approccio rigoroso</strong>
+            <span>Ogni tesi parte da studi, limiti metodologici e applicazioni concrete.</span>
+          </article>
+          <article class="meta-card reveal">
+            <strong>Esperienza calma</strong>
+            <span>Nessuna frizione inutile: leggibilità, ritmo, pause visive e comfort cognitivo.</span>
+          </article>
+          <article class="meta-card reveal">
+            <strong>Relazione duratura</strong>
+            <span>Il ritorno nasce da fiducia, identità editoriale e utilità reale, non da pressione.</span>
+          </article>
+        </div>
+      </div>
+
+      <aside class="hero-side reveal" aria-label="Anteprima editoriale">
+        <div class="panel feature-panel">
+          <small>Edizione inaugurale</small>
+          <h2>Come costruire una vita buona senza raccontarsela.</h2>
+          <p>
+            Un percorso tra gratitudine, autodeterminazione, senso, virtù, limiti del self-help e pratiche
+            che migliorano il benessere senza infantilizzare il lettore.
+          </p>
+          <div class="insight-stack">
+            <div class="insight">
+              <div class="orb">01</div>
+              <div>
+                <b>Evidenza prima della promessa</b>
+                <span>Mostriamo ciò che funziona, per chi, quando e con quali cautele.</span>
+              </div>
+            </div>
+            <div class="insight">
+              <div class="orb">02</div>
+              <div>
+                <b>Piacere della lettura</b>
+                <span>Tipografia, spazi, progressione narrativa e micro-ritmi per favorire immersione.</span>
+              </div>
+            </div>
+            <div class="insight">
+              <div class="orb">03</div>
+              <div>
+                <b>Persuasione etica</b>
+                <span>Inviti chiari e onesti, senza scorciatoie manipolative o pattern oscuri.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
+  </header>
 
+  <main>
+    <section id="manifesto">
+      <div class="container split">
+        <aside class="quote-card reveal">
+          <div class="kicker">Manifesto</div>
+          <blockquote>
+            La psicologia positiva migliore non ti vende euforia. Ti offre strumenti per abitare la realtà con più lucidità, forza e gentilezza.
+          </blockquote>
+          <p>
+            Qui il lettore viene trattato come una persona intelligente: capace di sfumature, dubbi, profondità e desiderio autentico di comprensione.
+          </p>
+        </aside>
+
+        <div class="articles">
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">Psicologia positiva</span>
+                <span class="tag">Scienza applicata</span>
+              </div>
+              <span>06 min</span>
+            </div>
+            <h3>Non parliamo di felicità performativa.</h3>
+            <p>
+              Parliamo di benessere come competenza: regolazione emotiva, significato, agency, relazioni, attenzione, abitudini e contesto.
+              Il tono del sito evita la banalizzazione perché un lettore colto resta più a lungo quando percepisce densità, onestà intellettuale e una promessa mantenuta.
+            </p>
+            <div class="article-footer">
+              <span>Più profondità, meno rumore</span>
+              <a href="#articoli" class="btn btn-secondary">Vedi esempi</a>
+            </div>
+          </article>
+
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">Filosofia</span>
+                <span class="tag">Etica del vivere</span>
+              </div>
+              <span>08 min</span>
+            </div>
+            <h3>La buona vita è anche una questione di forma.</h3>
+            <p>
+              Aristotele, gli Stoici, Simone Weil, Martha Nussbaum e la tradizione fenomenologica mostrano che il benessere non è soltanto stato interno,
+              ma qualità del rapporto con il mondo. Il sito riflette questa visione: sobrio, colto, contemplativo, invitante.
+            </p>
+            <div class="article-footer">
+              <span>Il design diventa argomento</span>
+              <a href="#metodo" class="btn btn-secondary">Scopri il metodo</a>
+            </div>
+          </article>
+
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">UX editoriale</span>
+                <span class="tag">Trust</span>
+              </div>
+              <span>05 min</span>
+            </div>
+            <h3>Far tornare il lettore senza spingerlo.</h3>
+            <p>
+              Il ritorno non viene forzato con urgenza artificiale, notifiche aggressive o trappole cognitive. Nasce da ritmo, riconoscibilità, promessa editoriale,
+              segnalazione del valore e continuità tematica. Un sito memorabile riduce l'attrito e aumenta la fiducia.
+            </p>
+            <div class="article-footer">
+              <span>Retention attraverso comfort e qualità</span>
+              <a href="#lettera" class="btn btn-secondary">Iscriviti</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="articoli">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Esempi editoriali</div>
+            <h2>Articoli pensati per restare.</h2>
+          </div>
+          <p>
+            Ogni card è scritta per offrire una combinazione di chiarezza, autorevolezza, curiosità e applicabilità. Questo bilanciamento aiuta la lettura profonda e la propensione al ritorno.
+          </p>
+        </div>
+
+        <div class="articles">
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">Ricerca</span>
+                <span class="tag">Benessere</span>
+                <span class="tag">Pratica</span>
+              </div>
+              <span>Articolo guida</span>
+            </div>
+            <h3>Gratitudine: quando funziona davvero e quando diventa retorica.</h3>
+            <p>
+              Un pezzo che parte dagli studi sulle pratiche di gratitudine, ne distingue gli effetti medi dai miti divulgativi e mostra come usare il journaling in modo realistico.
+              L'angolo editoriale non è "pensa positivo", ma: impara a registrare il bene senza negare il male.
+            </p>
+            <div class="article-footer">
+              <span>Con evidenze, limiti, protocollo di 7 giorni</span>
+              <a href="#lettera" class="btn btn-secondary">Ricevi il PDF</a>
+            </div>
+          </article>
+
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">Motivazione</span>
+                <span class="tag">Autodeterminazione</span>
+              </div>
+              <span>Saggio breve</span>
+            </div>
+            <h3>Autonomia, competenza, relazione: la triade che rende una vita più abitabile.</h3>
+            <p>
+              Un articolo costruito sulla Self-Determination Theory che collega benessere, motivazione autonoma, contesto sociale e qualità delle scelte quotidiane.
+              Ottimo per un pubblico che vuole rigore ma anche risonanza esistenziale.
+            </p>
+            <div class="article-footer">
+              <span>Teoria scientifica tradotta in linguaggio vivo</span>
+              <a href="#metodo" class="btn btn-secondary">Vedi struttura</a>
+            </div>
+          </article>
+
+          <article class="article-card reveal">
+            <div class="article-top">
+              <div class="tag-row">
+                <span class="tag">Filosofia</span>
+                <span class="tag">Attenzione</span>
+              </div>
+              <span>Longform</span>
+            </div>
+            <h3>L'attenzione come forma morale: perché ciò che guardi plasma ciò che diventi.</h3>
+            <p>
+              Un ponte fra psicologia dell'attenzione, fenomenologia e vita quotidiana. Il testo usa una progressione narrativa lenta e precisa per favorire immersione,
+              auto-riflessione e desiderio di condivisione spontanea.
+            </p>
+            <div class="article-footer">
+              <span>Progettato per profondità e memorabilità</span>
+              <a href="#lettera" class="btn btn-secondary">Leggi un estratto</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Metodo di progettazione</div>
+            <h2>Un sito che persuade con integrità.</h2>
+          </div>
+          <p>
+            Ho evitato meccaniche pensate per aggirare il giudizio del lettore. Al loro posto, la pagina usa principi di UX, cognizione e marketing etico per aumentare permanenza, piacere e fiducia.
+          </p>
+        </div>
+
+        <div class="principles-grid">
+          <article class="principle reveal">
+            <strong>Fluenza cognitiva</strong>
+            <p>
+              Contrasto morbido, ritmo verticale, ampiezza di riga controllata, gerarchia chiara e tipografia bifocale per rendere la lettura intensa ma non faticosa.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <strong>Curiosità ben dosata</strong>
+            <p>
+              Titoli ad alta densità semantica, promesse specifiche e inviti discreti. La curiosità viene accesa senza clickbait né urgenza artificiale.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <strong>Memoria del marchio</strong>
+            <p>
+              Nome breve, atmosfera coerente, lessico distintivo, tono costante. La memorabilità cresce quando tutti i dettagli sembrano provenire dalla stessa mente editoriale.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <strong>Comfort psicologico</strong>
+            <p>
+              Nessun popup invasivo, nessun countdown, nessun falso senso di scarsità. Il sito comunica calma e rispetto, elementi che riducono la reattanza del lettore.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <strong>Valore prima della conversione</strong>
+            <p>
+              Prima si dimostra competenza, poi si invita all'iscrizione. Questo aumenta qualità del lead, fiducia percepita e sostenibilità economica nel lungo periodo.
+            </p>
+          </article>
+          <article class="principle reveal">
+            <strong>Micro-interazioni leggere</strong>
+            <p>
+              Barra di progresso, reveal morbidi, CTA eleganti e navigazione sticky orientano il comportamento senza distrarre né saturare il sistema attentivo.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lettera">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div>
+            <div class="eyebrow">Lettera settimanale</div>
+            <h2>Una pagina, una pratica, un'idea da tenere con sé.</h2>
+            <p>
+              Ogni settimana un saggio breve su psicologia positiva, filosofia della vita buona e applicazioni pratiche tratte dalla letteratura scientifica.
+              Niente spam. Solo contenuti che meritano attenzione e rilettura.
+            </p>
+          </div>
+          <form class="form" onsubmit="event.preventDefault(); this.reset(); alert('Demo: iscrizione simulata. Collega il form a Mailchimp, Brevo o ConvertKit.');">
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" type="email" placeholder="La tua email" aria-label="La tua email" required />
+            <button class="btn btn-primary" type="submit">Ricevi il primo saggio</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="container">
-        <nav>
-            <div class="logo">MANUEL // ARCHIVE</div>
-            <div style="color: var(--text-s);">VOL. 2026</div>
-        </nav>
-
-        <header class="hero">
-            <h1>Ingegneria della mente e del carattere.</h1>
-            <p>Protocolli tecnici basati su evidenze scientifiche. Nessuna motivazione, solo analisi dei processi bio-comportamentali.</p>
-        </header>
-
-        <main class="main-grid">
-            <section>
-                {articles.map(post => (
-                    <a href="#" class="card">
-                        <span class="tag">{post.cat} • {post.time} • {post.level}</span>
-                        <h2>{post.title}</h2>
-                        <p>{post.desc}</p>
-                    </a>
-                ))}
-            </section>
-
-            <aside>
-                <div class="sidebar-box">
-                    <h4>Metodologia</h4>
-                    <p>Ogni paper citato è verificato tramite database peer-reviewed (PubMed/Nature). L'obiettivo è la precisione del dato, non la velocità di lettura.</p>
-                </div>
-                <div class="sidebar-box" style="border-left: 2px solid var(--accent);">
-                    <h4>Prossimo Rilascio</h4>
-                    <p>Analisi della plasticità sinaptica indotta dal sonno profondo. [In Revisione]</p>
-                </div>
-            </aside>
-        </main>
+      <div class="footer-card reveal">
+        <div>
+          <strong>Intus</strong>
+          <p>
+            Psicologia positiva senza ingenuità, filosofia senza pose, design senza manipolazione.
+            Un progetto costruito per far sentire il lettore accolto, rispettato e intellettualmente stimolato.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="#top">Inizio</a>
+          <a href="#articoli">Articoli</a>
+          <a href="#metodo">Metodo</a>
+          <a href="#lettera">Newsletter</a>
+        </div>
+      </div>
     </div>
+  </footer>
 
-    <script>
-        // 1. GESTIONE CARICAMENTO (Per evitare il blocco del video/immagine che hai mandato)
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            // Diamo un senso di "calibrazione reale" con un piccolo delay
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-                document.body.classList.add('loaded');
-            }, 1500); 
-        });
+  <script>
+    const progress = document.getElementById('progress');
+    const updateProgress = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progress.style.width = pct + '%';
+    };
+    updateProgress();
+    document.addEventListener('scroll', updateProgress, { passive: true });
 
-        // 2. BARRA DI PROGRESSO (Piacere visivo allo scrolling)
-        window.onscroll = () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById("progress").style.width = scrolled + "%";
-        };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
 
-        // Fallback: se il loader non sparisce dopo 4 secondi, forzalo (Safety first)
-        setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
-            document.body.classList.add('loaded');
-        }, 4000);
-    </script>
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
