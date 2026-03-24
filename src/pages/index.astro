@@ -922,6 +922,88 @@
         </div>
       </div>
     </section>
+  
+    <!-- BLOCCO: Articolo reale (longform) -->
+    <section id="articolo-reale">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Articolo</div>
+            <h2>Gratitudine, senza retorica</h2>
+          </div>
+          <p>Una sintesi operativa dalla letteratura: quando funziona, per chi, e come praticarla senza negare il negativo.</p>
+        </div>
+        <article class="article-card reveal">
+          <p><strong>Tesi.</strong> La gratitudine aumenta il benessere medio, ma gli effetti dipendono da frequenza, contesto e stile cognitivo. Non è un interruttore emotivo, è un allenamento dell’attenzione.</p>
+          <p><strong>Limiti.</strong> In condizioni di stress acuto o ingiustizia percepita, pratiche ingenue possono risultare controproducenti. Serve integrazione con validazione emotiva.</p>
+          <p><strong>Protocollo 7 giorni.</strong> Ogni sera: 1) annota 2 elementi specifici; 2) perché sono accaduti; 3) cosa dice di te/degli altri; 4) una micro-azione di restituzione il giorno dopo.</p>
+          <p class="muted">Continua: come evitare l’adattamento edonico →</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- BLOCCO: Loop di lettura (curiosity gap) -->
+    <section id="loop">
+      <div class="container">
+        <div class="article-card reveal">
+          <h3>Domanda che cambia la lettura</h3>
+          <p>Se domani togliessimo dal tuo ambiente tutto ciò che ti aiuta a stare bene, cosa rimarrebbe davvero sotto il tuo controllo?</p>
+          <div class="article-footer">
+            <span>Risposta guidata nella prossima sezione</span>
+            <a href="#micro-esperienza" class="btn btn-secondary">Continua</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCCO: Micro esperienza -->
+    <section id="micro-esperienza">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div>
+            <div class="eyebrow">Esercizio (2 minuti)</div>
+            <h2>Ricalibra l’attenzione</h2>
+            <p>Scrivi tre cose piccole e concrete accadute oggi. Poi chiediti: quale azione minima le renderebbe più probabili domani?</p>
+          </div>
+          <div class="form">
+            <button class="btn btn-primary" onclick="alert('Fatto. Questo è il primo passo.')">Ho fatto l’esercizio</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCCO: Monetizzazione soft -->
+    <section id="prodotto">
+      <div class="container">
+        <div class="article-card reveal">
+          <div class="article-top">
+            <div class="tag-row">
+              <span class="tag">Guida</span>
+              <span class="tag">PDF</span>
+            </div>
+            <span>€9</span>
+          </div>
+          <h3>Settimana lucida: 7 pratiche basate su evidenze</h3>
+          <p>Una guida compatta con protocolli pratici (gratitudine, attenzione, autonomia) e limiti espliciti. Pensata per essere usata, non solo letta.</p>
+          <div class="article-footer">
+            <span>Acquisto etico, senza urgenza artificiale</span>
+            <a class="btn btn-primary" href="#">Ottieni la guida</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCCO: Firma mentale / identità -->
+    <section id="firma">
+      <div class="container">
+        <div class="quote-card reveal">
+          <div class="kicker">Firma</div>
+          <blockquote>Non semplifichiamo la mente per venderti qualcosa. La rendiamo più chiara per scegliere meglio.</blockquote>
+          <p>Se torni, è perché qui trovi pensieri che ti rispettano.</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -952,9 +1034,12 @@
       const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
       progress.style.width = pct + '%';
     };
+
+    // inizializza e aggiorna al scroll
     updateProgress();
     document.addEventListener('scroll', updateProgress, { passive: true });
 
+    // reveal on scroll (micro-interazioni leggere)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
