@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Per Te ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+overflow-x:hidden;
+}
+
+.card{
+background:white;
+width:100%;
+max-width:900px;
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+text-align:center;
+animation:fade 1.2s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+h1{
+font-size:42px;
+color:#d6336c;
+margin-bottom:15px;
+}
+
+.subtitle{
+font-size:18px;
+color:#666;
+margin-bottom:35px;
+}
+
+.video{
+position:relative;
+padding-bottom:56.25%;
+height:0;
+overflow:hidden;
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.video iframe{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:none;
+}
+
+.message{
+margin-top:35px;
+font-size:20px;
+line-height:1.8;
+color:#444;
+}
+
+.footer{
+margin-top:40px;
+font-size:17px;
+font-weight:600;
+color:#d6336c;
+}
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+color:white;
+font-size:20px;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="card">
+
+<h1>Buon Compleanno ❤️</h1>
+
+<p class="subtitle">
+Ti ho preparato un piccolo pensiero...
+</p>
+
+<div class="video">
+
+<!-- INCOLLA QUI IL LINK EMBED DI YOUTUBE -->
+
+<iframe
+src="https://www.youtube.com/embed/VIDEO_ID"
+allowfullscreen>
+</iframe>
+
+</div>
+
+<div class="message">
+
+<p>
+Ti auguro una giornata piena di sorrisi,
+serenità e momenti che possano renderti felice.
+</p>
+
+<br>
+
+<p>
+Qualunque sia la strada che stai percorrendo,
+spero che ti porti tutto ciò che desideri.
+</p>
+
+</div>
+
+<div class="footer">
+Con affetto ❤️
+</div>
+
+</div>
+
+<script>
+
+const hearts=document.getElementById("hearts");
+
+for(let i=0;i<40;i++){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(15+Math.random()*25)+"px";
+
+h.style.animationDuration=(5+Math.random()*8)+"s";
+
+h.style.animationDelay=Math.random()*5+"s";
+
+hearts.appendChild(h);
+
+}
+
+</script>
+
+</body>
+</html>
